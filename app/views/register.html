@@ -1,0 +1,26 @@
+<form name="authForm">
+    <input type="text" ng-model="user.username" placeholder="username" /><br />
+    <div ng-switch on="authError">
+    	<div ng-switch-when="available">
+    		<input type="text" ng-model="user.password" placeholder="password" /><br />
+    		<input type="text" ng-model="user.email" placeholder="email" /><br />
+    		<input type="text" ng-model="user.city" placeholder="city" /><br />
+    		<input type="text" ng-model="user.state" placeholder="state" /><br />
+    		<input type="text" ng-model="user.country" placeholder="country" /><br />
+    		<div class="btn-group">
+        <button type="button" class="btn btn-primary" ng-model="radioModel" btn-radio="'Male'">Male</button>
+        <button type="button" class="btn btn-primary" ng-model="radioModel" btn-radio="'Female'">Female</button>
+        <button type="button" class="btn btn-primary" ng-model="radioModel" btn-radio="'No answer'">No answer</button>
+   		 </div><br />
+    		<input type="text" ng-model="user.birthday.month" placeholder="MM" />
+    		<input type="text" ng-model="user.birthday.day" placeholder="DD" />
+    		<input type="text" ng-model="user.birthday.year" placeholder="YYYY" /><br />
+    		<input type="textarea" ng-model="user.bio"	placeholder="bio" /><br />
+    		<button class="btn blue" ng-click="create()">Create account</button>
+    	</div>
+    	<div ng-switch-default>
+    		<button class="btn" ng-click="authenticate()">Check availability</button>
+    		<button class="btn" ng-click="recover()">Recover account</button>
+    	</div>
+
+</form>

@@ -1,0 +1,17 @@
+<div ng-switch on="role">
+	<div ng-switch-when="user">
+		Logged in!
+	</div>
+	<div ng-switch-default>
+		<form name="authForm">
+	  <input type="text" ng-model="user.username" placeholder="Username" /><br />
+	  <input type="text" ng-model="user.password" placeholder="Password" /><br />
+	  <button class="btn" ng-click="authenticate()">Login</button>
+	  <a href="#/register">Register/Forgot Password</a>
+		</form>
+	</div>
+</div>
+<div ng-switch on="authError">
+	<div class="alert alert-error" ng-switch-when="invalid">Invalid username/password</div>
+	<div ng-switch-default>&nbsp;</div>
+</div>
