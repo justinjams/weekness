@@ -1,6 +1,6 @@
 'use strict';
-var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-interceptor', 'ngCookies', 'ngResource', 'mongolabResourceHttp'])
-  .config(function ($locationProvider, $stateProvider, $routeProvider, $httpProvider) {
+var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-interceptor', 'ngCookies', 'ngResource', 'blueimp.fileupload'])
+  .config(function ($locationProvider, $stateProvider, $routeProvider, $httpProvider, fileUploadProvider) {
     $stateProvider
       .state('index', {
           url: "", // root route
@@ -40,6 +40,15 @@ var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-in
       });
 
   $locationProvider.html5Mode(false).hashPrefix('');
+  angular.extend(fileUploadProvider.defaults, {
+      // Enable image resizing, except for Android and Opera,
+      // which actually support image resizing, but fail to
+      // send Blob objects via XHR requests:
+      disableImageResize: /Android(?!.*Chrome)|Opera/
+          .test(window.navigator.userAgent),
+      maxFileSize: 5000000,
+      acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+    });
   });
     /*
     $routeProvider
@@ -55,4 +64,4 @@ var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-in
         redirectTo: '/'
       });
 */
-app.constant('MONGOLAB_CONFIG',{API_KEY:'jWN8q5zg3J6WX-eFGzq_cLZ8YzPitFT6', DB_NAME:'weekness'});
+//app.constant('MONGOLAB_CONFIG',{API_KEY:'jWN8q5zg3J6WX-eFGzq_cLZ8YzPitFT6', DB_NAME:'weekness'});

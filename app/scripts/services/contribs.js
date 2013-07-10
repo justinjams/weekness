@@ -26,12 +26,9 @@ angular.module('WeeknessApp')
 				});
 			},
 			create: function(contrib) {
-				$contrib = new db.Contrib(contrib);
-				$contrib.$save(function(){
+				db.Contrib.save(contrib, function(){
 					console.log('Created contrib: '+contrib.title);
-					return true;
 				});
-				return false;
 			}
 		};
 	});

@@ -77,21 +77,11 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/services/contribs.js"></script>
-    <script src="scripts/services/db.js"></script>
-    <script src="scripts/services/_db.js"></script>
-    <script src="scripts/services/users.js"></script>
-    <script src="scripts/controllers/contrib.js"></script>
-    <script src="scripts/controllers/debug.js"></script>
-    <script src="scripts/controllers/login.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/register.js"></script>
-    <script src="scripts/directives/contriBmain.js"></script>
-    <script src="scripts/filters/contriBmain.js"></script>
     <!-- endbuild -->
 
         <!-- build:js scripts/plugins.js -->
         <script src="bower_components/jquery/jquery.min.js"></script>
+        <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-angular.js"></script>
         <script src="bower_components/isotope/jquery.isotope.min.js"></script>
         <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
         <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
@@ -114,9 +104,20 @@
         <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
         <script src="bower_components/ui-router/release/angular-ui-router.min.js"></script>
         <script src="bower_components/underscore/underscore-min.js"></script>
-        <script src="scripts/vendor/mongolabResourceHttp.js"></script>
         <script src="scripts/vendor/http-auth-interceptor.js"></script>
         <script src="scripts/vendor/underscore.js"></script>
+        <script src="scripts/services/contribs.js"></script>
+        <script src="scripts/services/db.js"></script>
+        <script src="scripts/services/users.js"></script>
+        <script src="scripts/controllers/contrib.js"></script>
+        <script src="scripts/controllers/debug.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/register.js"></script>
+        <script src="scripts/directives/contriBmain.js"></script>
+        <script src="scripts/filters/contriBmain.js"></script>
+        <script src="scripts/controllers/fileUploadController.js"></script>
+        <script src="scripts/controllers/fileDestroyController.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -20,17 +20,19 @@ try {
   //no such thing in production
 }
 
+exports = module.exports = server;
+
+exports.use = function() {
 //To allow use ObjectId or other any type of _id
 var objectId = function (_id) {
     if (_id.length === 24 && parseInt(db.ObjectId(_id).getTimestamp().toISOString().slice(0,4), 10) >= 2010) {
         return db.ObjectId(_id);
     } 
     return _id;
-}
+};
 
 //Function callback
 var fn = function (req, res) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:25750");
     res.contentType('application/json');
     var fn = function (err, doc) { 
     //console.log('asdasdas',req.body ,err,doc)
@@ -72,6 +74,7 @@ app.get('/api/:collection/:id', function(req, res) {
 
 // Save 
 app.post('/api/:collection', function(req, res) {
+	req.body = req.query;
     if (req.body._id) { req.body._id = objectId(req.body._id);}
     db.collection(req.params.collection).save(req.body, {safe:true}, fn(req, res));
 });
@@ -99,9 +102,6 @@ app.put('/api/:collection/:cmd',  function (req, res) {
     if (req.params.cmd === 'distinct') {req.body = req.body.key}
     db.collection(req.params.collection)[req.params.cmd](req.body, fn(req, res)); 
 })
-exports = module.exports = server;
-
-exports.use = function() {
   app.use.apply(app, arguments);
 };
 

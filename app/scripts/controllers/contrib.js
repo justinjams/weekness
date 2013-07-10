@@ -2,6 +2,7 @@
 
 angular.module('WeeknessApp')
   .controller('ContribCtrl', function ($scope, contribs) {
+    $scope.percentage = 0;
     $scope.contrib = {
     	title: '',
     	body: '',
@@ -25,7 +26,6 @@ angular.module('WeeknessApp')
 
     $scope.submit = function() {
     	console.log('in');
-    	if($scope.validate.image())
-        contribs.create($scope.contrib);
+      contribs.create($scope.contrib);
     }
   });

@@ -29,7 +29,8 @@
     "grunt-ngmin": "~0.0.2",
     "grunt-express": "~0.3.6",
     "grunt-nodemon": "0.0.7",
-    "mongojs": "~0.7.8"
+    "mongojs": "~0.7.8",
+    "blueimp-file-upload-node": "~2.0.0"
   },
   "engines": {
     "node": ">=0.8.0"
