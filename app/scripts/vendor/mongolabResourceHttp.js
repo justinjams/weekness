@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('mongolabResourceHttp', []).factory('$mongolabResourceHttp', ['MONGOLAB_CONFIG', '$http', function (MONGOLAB_CONFIG, $http) {
 
   function MmongolabResourceFactory(collectionName) {
@@ -11,7 +13,7 @@ angular.module('mongolabResourceHttp', []).factory('$mongolabResourceHttp', ['MO
     var defaultParams = {apiKey:config.API_KEY};
 
     var resourceRespTransform = function(data) {
-       return new Resource(data);
+      return new Resource(data);
     };
 
     var resourcesArrayRespTransform = function(data) {
@@ -86,9 +88,10 @@ angular.module('mongolabResourceHttp', []).factory('$mongolabResourceHttp', ['MO
     Resource.distinct = function (field, queryJson, successcb, errorcb) {
       var httpPromise = $http.post(dbUrl + '/runCommand', angular.extend({}, queryJson || {}, {
         distinct:collectionName,
-        key:field}), {
-          params:defaultParams
-        });
+        key:field
+      }), {
+        params:defaultParams
+      });
       return promiseThen(httpPromise, successcb, errorcb, function(data){
         return data.values;
       });
@@ -123,12 +126,12 @@ angular.module('mongolabResourceHttp', []).factory('$mongolabResourceHttp', ['MO
     };
 
     Resource.prototype.$update = function (successcb, errorcb) {
-      var httpPromise = $http.put(collectionUrl + "/" + this.$id(), angular.extend({}, this, {_id:undefined}), {params:defaultParams});
+      var httpPromise = $http.put(collectionUrl + '/' + this.$id(), angular.extend({}, this, {_id:undefined}), {params:defaultParams});
       return promiseThen(httpPromise, successcb, errorcb, resourceRespTransform);
     };
 
     Resource.prototype.$remove = function (successcb, errorcb) {
-      var httpPromise = $http['delete'](collectionUrl + "/" + this.$id(), {params:defaultParams});
+      var httpPromise = $http['delete'](collectionUrl + '/' + this.$id(), {params:defaultParams});
       return promiseThen(httpPromise, successcb, errorcb, resourceRespTransform);
     };
 

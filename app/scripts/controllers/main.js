@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('WeeknessApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, _db) {
 
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  _db.User.query({}, function(matches) {
+    //$scope.contribs = matches;
+    console.log(matches);
+    console.log('Found matches!');
+   });
 
   });

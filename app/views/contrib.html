@@ -1,0 +1,24 @@
+<div class="hero-unit">
+	<h2>Contribute</h2>
+	<form name="contribForm">
+		<label for="title">Title:</label> <input type="textarea" ng-model="contrib.title" /><br />
+		<label for="body">Body:</label> <input type="text" ng-model="contrib.body" name="body" /><br />
+		<label for="weakness">Weakness:</label> <input type="text" ng-model="contrib.weakness" /><br />
+		<label for="type">Type:</label> <select name="type" ng-model="contrib.artifactType">
+			<option value="" disabled selected>Choose upload type</option>
+			<option ng-repeat="type in artifactTypes">{{ type }}</option>
+		</select><br />
+		<div ng-switch on="contrib.artifactType">
+			<div ng-switch-when="image">
+				Upload images!			
+			<form enctype="form-data">
+	    <input id="image-file" type="file" />
+			</form>
+			</div>
+			<div ng-switch-default>
+				No way to upload that!
+			</div>
+		</div>
+		<input class="btn" type="submit" id="submit" value="Submit" ng-click="submit()"/>
+	</form>
+</div>

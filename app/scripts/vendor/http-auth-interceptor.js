@@ -1,4 +1,4 @@
-/*global angular:true, browser:true */
+/*global angular:true */
 
 /**
  * @license HTTP Auth Interceptor Module for AngularJS
@@ -66,7 +66,7 @@
     var buffer = [];
     
     /** Service initialized later because of circular dependency problem. */
-    var $http; 
+    var $http;
     
     function retryHttpRequest(config, deferred) {
       function successCallback(response) {
@@ -85,9 +85,9 @@
        */
       append: function(config, deferred) {
         buffer.push({
-          config: config, 
+          config: config,
           deferred: deferred
-        });      
+        });
       },
               
       /**

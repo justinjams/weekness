@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
 </head>
-  <body ng-app="WeeknessApp">
+  <body class="container" ng-app="WeeknessApp">
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -25,18 +25,44 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-
     <div class="row-fluid">
-        <div class="span4 offset8">
-            <div ng-controller="UsersCtrl">
-                <div ui-view="users"></div>
+        <div class="span4 brand">
+            <h1><a href="#">Weekness</a></h1>
+        </div>
+        <div class="span4">
+            <div ng-controller="DebugCtrl" style="max-height:150px; overflow:scroll">
+                <table class="table-striped">
+                    <tr ng-repeat="entry in debug_log"><td>{{ entry }}<td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="span4">
+            <div ng-controller="LoginCtrl">
+                <div ng-switch on="user.role">
+                    <div ng-switch-when="anonymous">
+                        <form name="authForm">
+                          <input type="text" ng-model="username" placeholder="Username" /><br />
+                          <input type="text" ng-model="password" placeholder="Password" /><br />
+                          <button class="btn" ng-click="authenticate($event)">Login</button>
+                          <a href="#/register">Register/Forgot Password</a>
+                        </form>
+                    </div>
+                    <div ng-switch-default>
+                        <h3>Hello, <strong>{{ user.username }}</strong>!</h3>
+                        <a class='btn-large' href="#/contrib">Contribute!</a>
+                    </div>
+                </div>
+                <div ng-switch on="authError">
+                    <div class="alert alert-error" ng-switch-when="invalid">Invalid username/password</div>
+                    <div ng-switch-default>&nbsp;</div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Add your site or application content here -->
     <div class="container" ui-view="content">
-
+        <script src="http://localhost:35729/livereload.js"></script>
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
@@ -48,16 +74,25 @@
     </script>
 
     <script src="bower_components/angular/angular.js"></script>
-    <script src="scripts/vendor/mongolabResourceHttp.js"></script>
-    <script src="scripts/vendor/http-auth-interceptor.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/services/contribs.js"></script>
+    <script src="scripts/services/db.js"></script>
+    <script src="scripts/services/_db.js"></script>
+    <script src="scripts/services/users.js"></script>
+    <script src="scripts/controllers/contrib.js"></script>
+    <script src="scripts/controllers/debug.js"></script>
+    <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/register.js"></script>
+    <script src="scripts/directives/contriBmain.js"></script>
+    <script src="scripts/filters/contriBmain.js"></script>
     <!-- endbuild -->
 
         <!-- build:js scripts/plugins.js -->
-        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/jquery/jquery.min.js"></script>
+        <script src="bower_components/isotope/jquery.isotope.min.js"></script>
         <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
         <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
         <script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
@@ -78,8 +113,10 @@
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
         <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
         <script src="bower_components/ui-router/release/angular-ui-router.min.js"></script>
-        <script src="scripts/controllers/users.js"></script>
-        <script src="scripts/services/users.js"></script>
+        <script src="bower_components/underscore/underscore-min.js"></script>
+        <script src="scripts/vendor/mongolabResourceHttp.js"></script>
+        <script src="scripts/vendor/http-auth-interceptor.js"></script>
+        <script src="scripts/vendor/underscore.js"></script>
         <!-- endbuild -->
 </body>
 </html>

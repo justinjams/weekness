@@ -1,6 +1,6 @@
 'use strict';
-var app = angular.module('WeeknessApp', ['mongolabResourceHttp', 'ui.state'])
-  .config(function ($locationProvider, $stateProvider, $routeProvider) {
+var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-interceptor', 'ngCookies', 'ngResource', 'mongolabResourceHttp'])
+  .config(function ($locationProvider, $stateProvider, $routeProvider, $httpProvider) {
     $stateProvider
       .state('index', {
           url: "", // root route
@@ -8,10 +8,15 @@ var app = angular.module('WeeknessApp', ['mongolabResourceHttp', 'ui.state'])
               "content": {
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
-              },
-              "users": {
-                  templateUrl: "views/users.html",
-                  controller: 'UsersCtrl'
+              }
+          }
+      })
+      .state('main', {
+          url: "/", // root route
+          views: {
+              "content": {
+                templateUrl: 'views/main.html',
+                controller: 'MainCtrl'
               }
           }
       })
@@ -20,11 +25,16 @@ var app = angular.module('WeeknessApp', ['mongolabResourceHttp', 'ui.state'])
           views: {
               "content": {
                 templateUrl: 'views/register.html',
-                controller: 'UsersCtrl'
-              },
-              "users": {
-                  templateUrl: "views/users.html",
-                  controller: 'UsersCtrl'
+                controller: 'RegisterCtrl'
+              }
+          }
+      })
+      .state('contrib', {
+          url: "/contrib",
+          views: {
+              "content": {
+                templateUrl: 'views/contrib.html',
+                controller: 'ContribCtrl'
               }
           }
       });

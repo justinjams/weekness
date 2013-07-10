@@ -5,6 +5,7 @@ var lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT });
 var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
+var path = require('path');
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -19,7 +20,8 @@ module.exports = function (grunt) {
   // configurable paths
   var yeomanConfig = {
     app: 'app',
-    dist: 'dist'
+    dist: 'dist',
+    server: 'server'
   };
 
   try {
@@ -39,7 +41,7 @@ module.exports = function (grunt) {
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server']
+        tasks: ['compass']
       },
       livereload: {
         options: {
@@ -51,6 +53,13 @@ module.exports = function (grunt) {
           '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+      },
+      express: {
+        files:  [ 'express/*.js' ],
+        tasks:  [ 'express:dev' ],
+        options: {
+          nospawn: true //Without this option specified express won't be reloaded
+        }
       }
     },
     connect: {
@@ -87,6 +96,17 @@ module.exports = function (grunt) {
               mountFolder(connect, yeomanConfig.dist)
             ];
           }
+        }
+      }
+    },
+    express: {
+      dev: {
+        options: {
+          port: 25750,
+          bases: [ path.resolve('.tmp'), path.resolve(yeomanConfig.app) ],
+          monitor: {},
+          debug: true,
+          server: path.resolve('server/express')
         }
       }
     },
@@ -310,7 +330,7 @@ module.exports = function (grunt) {
       return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
     }
 
-    grunt.task.run([
+      grunt.task.run([
       'clean:server',
       'concurrent:server',
       'connect:livereload',
@@ -337,12 +357,22 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'rev',
-    'usemin'
+    'usemin',
+    'concurrent:target'
   ]);
 
   grunt.registerTask('default', [
     'jshint',
     'test',
     'build'
+  ]);
+
+  grunt.registerTask('express-server', [
+    'clean:server',
+    'concurrent:server',
+    'express',
+    'open',
+    'watch',
+    'express-keepalive'
   ]);
 };
