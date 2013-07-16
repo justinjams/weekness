@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('WeeknessApp')
-  .controller('FileDestroyControllerCtrl', function ($scope, $http) {
+  .controller('FileDestroyCtrl', function ($scope, $http) {
     var file = $scope.file,
         state;
     if (file.url) {

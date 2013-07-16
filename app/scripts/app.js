@@ -37,17 +37,30 @@ var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-in
                 controller: 'ContribCtrl'
               }
           }
+      })
+      .state('upload', {
+          url: "/upload",
+          views: {
+              "content": {
+                templateUrl: 'views/partials/fileUpload.html',
+                controller: 'FileUploadCtrl'
+              }
+          }
       });
+    $routeProvider.when('/upload', {templateUrl: 'views/partials/fileUpload.html', controller: 'FileUploadCtrl'});
 
-  $locationProvider.html5Mode(false).hashPrefix('');
-  angular.extend(fileUploadProvider.defaults, {
-      // Enable image resizing, except for Android and Opera,
-      // which actually support image resizing, but fail to
-      // send Blob objects via XHR requests:
-      disableImageResize: /Android(?!.*Chrome)|Opera/
-          .test(window.navigator.userAgent),
-      maxFileSize: 5000000,
-      acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+
+    $locationProvider.html5Mode(false).hashPrefix('');
+
+     delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    angular.extend(fileUploadProvider.defaults, {
+        // Enable image resizing, except for Android and Opera,
+        // which actually support image resizing, but fail to
+        // send Blob objects via XHR requests:
+        disableImageResize: /Android(?!.*Chrome)|Opera/
+            .test(window.navigator.userAgent),
+        maxFileSize: 5000000,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
     });
   });
     /*
@@ -65,3 +78,4 @@ var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-in
       });
 */
 //app.constant('MONGOLAB_CONFIG',{API_KEY:'jWN8q5zg3J6WX-eFGzq_cLZ8YzPitFT6', DB_NAME:'weekness'});
+app.constant('uploadUrl', 'http://localhost:8888');

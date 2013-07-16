@@ -69,6 +69,7 @@ angular.module('WeeknessApp')
 				$user.$save(function(){
 					authService.loginConfirmed();
 					console.log('Created account for '+user.username);
+					console.log(user);
 					return true;
 				});
 				return false;

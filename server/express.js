@@ -1,10 +1,16 @@
 'use strict';
 
 var express = require('express');
-var app = express();
-var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
-var db = require('mongojs').connect('weekness');
+var app = express(),
+    server = require('http').createServer(app),io = require('socket.io').listen(server),
+    db = require('mongojs').connect('weekness'), 
+    everyauth = require('everyauth');
+app.use(express.bodyParser())
+    .use(express.static(__dirname))
+    .use(express.cookieParser('mr ripley'))
+    .use(express.session())
+    .use(everyauth.middleware(app));
+
 
 io.sockets.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
@@ -104,5 +110,28 @@ app.put('/api/:collection/:cmd',  function (req, res) {
 })
   app.use.apply(app, arguments);
 };
+
+app.post('/upload', function (req, res) {
+    console.log('Hello, transfer!');
+    console.log(req);
+    setTimeout(
+        function () {
+        res.setHeader('Content-Type', 'text/html');
+            //res.setHeader('Content-Type', 'text/html');
+            if (req.files.length == 0 || req.files.file.size == 0)
+                res.send({ msg: 'No file uploaded at ' + new Date().toString() });
+            else {
+                var file = req.files.file;
+                fs.unlink(file.path, function (err) {
+                    if (err)
+                        throw err;
+                    else
+                        res.send({ msg: '<b>"' + file.name + '"</b> uploaded to the server at ' + new Date().toString() });
+                });
+            }
+        },
+        (req.param('delay', 'yes') == 'yes') ? 2000 : -1
+    );
+});
 
 exports.express = express;

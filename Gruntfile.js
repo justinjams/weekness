@@ -322,6 +322,12 @@ module.exports = function (grunt) {
           ]
         }
       }
+    },
+    bgShell: {
+      upload: {
+        bg: true,
+        cmd: './node_modules/blueimp-file-upload-node/server.js'
+      }
     }
   });
 
@@ -370,9 +376,11 @@ module.exports = function (grunt) {
   grunt.registerTask('express-server', [
     'clean:server',
     'concurrent:server',
+    'bgShell:upload',
     'express',
     'open',
     'watch',
     'express-keepalive'
   ]);
+
 };

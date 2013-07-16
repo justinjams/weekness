@@ -73,6 +73,9 @@
       s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
 
+    <!-- We have to load jQuery first for plugins which require -->
+    <!-- jQuery rather than jqLite -->
+    <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -80,8 +83,6 @@
     <!-- endbuild -->
 
         <!-- build:js scripts/plugins.js -->
-        <script src="bower_components/jquery/jquery.min.js"></script>
-        <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-angular.js"></script>
         <script src="bower_components/isotope/jquery.isotope.min.js"></script>
         <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
         <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
@@ -109,6 +110,8 @@
         <script src="scripts/services/contribs.js"></script>
         <script src="scripts/services/db.js"></script>
         <script src="scripts/services/users.js"></script>
+        <script src="scripts/controllers/fileUpload.js"></script>
+        <script src="scripts/controllers/fileDestroy.js"></script>
         <script src="scripts/controllers/contrib.js"></script>
         <script src="scripts/controllers/debug.js"></script>
         <script src="scripts/controllers/login.js"></script>
@@ -116,8 +119,22 @@
         <script src="scripts/controllers/register.js"></script>
         <script src="scripts/directives/contriBmain.js"></script>
         <script src="scripts/filters/contriBmain.js"></script>
-        <script src="scripts/controllers/fileUploadController.js"></script>
-        <script src="scripts/controllers/fileDestroyController.js"></script>
+        <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+        <script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js"></script>
+        <script src="bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+        <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+        <script src="bower_components/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+        <!-- The basic File Upload plugin -->
+        <script src="bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>
+        <!-- The File Upload processing plugin -->
+        <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
+        <!-- The File Upload image preview & resize plugin -->
+        <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
+        <!-- The File Upload audio preview plugin -->
+        <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-validate.js"></script>
+        <!-- The File Upload Angular JS module -->
+        <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-angular.js"></script>
+        <script src="scripts/directives/contribArtifact.js"></script>
         <!-- endbuild -->
 </body>
 </html>
