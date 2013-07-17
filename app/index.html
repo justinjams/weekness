@@ -28,6 +28,7 @@
     <div class="row-fluid">
         <div class="span4 brand">
             <h1><a href="#">Weekness</a></h1>
+            <br><a href="#/faker">Fake some content!</a>
         </div>
         <div class="span4">
             <div ng-controller="DebugCtrl" style="max-height:150px; overflow:scroll">
@@ -77,9 +78,11 @@
     <!-- jQuery rather than jqLite -->
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/isotope/jquery.isotope.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/vendor/angular-weekness.js"></script>
     <!-- endbuild -->
 
         <!-- build:js scripts/plugins.js -->
@@ -107,18 +110,6 @@
         <script src="bower_components/underscore/underscore-min.js"></script>
         <script src="scripts/vendor/http-auth-interceptor.js"></script>
         <script src="scripts/vendor/underscore.js"></script>
-        <script src="scripts/services/contribs.js"></script>
-        <script src="scripts/services/db.js"></script>
-        <script src="scripts/services/users.js"></script>
-        <script src="scripts/controllers/fileUpload.js"></script>
-        <script src="scripts/controllers/fileDestroy.js"></script>
-        <script src="scripts/controllers/contrib.js"></script>
-        <script src="scripts/controllers/debug.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/register.js"></script>
-        <script src="scripts/directives/contriBmain.js"></script>
-        <script src="scripts/filters/contriBmain.js"></script>
         <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
         <script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js"></script>
         <script src="bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
@@ -134,7 +125,25 @@
         <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-validate.js"></script>
         <!-- The File Upload Angular JS module -->
         <script src="bower_components/blueimp-file-upload/js/jquery.fileupload-angular.js"></script>
+        <!-- 
         <script src="scripts/directives/contribArtifact.js"></script>
+        <script src="scripts/controllers/faker.js"></script>
+        <script src="scripts/directives/optKindDirective.js"></script>
+        <script src="scripts/directives/isoSortByDataDirective.js"></script>
+        <script src="scripts/directives/angularIsotopeDirective.js"></script>
+        <script src="scripts/services/contribs.js"></script>
+        <script src="scripts/services/db.js"></script>
+        <script src="scripts/services/users.js"></script>
+        <script src="scripts/controllers/fileUpload.js"></script>
+        <script src="scripts/controllers/fileDestroy.js"></script>
+        <script src="scripts/controllers/contrib.js"></script>
+        <script src="scripts/controllers/debug.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/register.js"></script>
+        <script src="scripts/directives/contriBmain.js"></script>
+        <script src="scripts/filters/contriBmain.js"></script>
+        -->
         <!-- endbuild -->
 </body>
 </html>

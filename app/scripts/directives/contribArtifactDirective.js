@@ -26,8 +26,8 @@ angular.module('WeeknessApp')
             ctrl.$parsers.unshift(function(value) {
                 // test and set the validity after update.
                 //var valid = regex.test(value);
-                ctrl.$setValidity('contribArtifact', scope.artifactUploaded);
-                
+                ctrl.$setValidity('contribArtifact', scope.flags.artifactUploaded);
+   
                 // if it's valid, return the value to the model, 
                 // otherwise return undefined.
                 return valid ? value : undefined;
@@ -37,13 +37,11 @@ angular.module('WeeknessApp')
             // is updated on the DOM element.
             ctrl.$formatters.unshift(function(value) {
                 // validate.
-                ctrl.$setValidity('contribArtifact', scope.artifactUploaded);
+                ctrl.$setValidity('contribArtifact', scope.flags.artifactUploaded);
                 
                 // return the value or nothing will be written to the DOM.
                 return value;
             });
-
-            console.log(ctrl);
         }
     };
   });

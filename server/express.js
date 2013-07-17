@@ -7,9 +7,9 @@ var app = express(),
     everyauth = require('everyauth');
 app.use(express.bodyParser())
     .use(express.static(__dirname))
-    .use(express.cookieParser('mr ripley'))
-    .use(express.session())
-    .use(everyauth.middleware(app));
+    .use(express.cookieParser())
+    .use(express.session({ secret: 'idontknowwhatimdoing' }));
+    //{ secret: 'thissecretrocks', cookie: { maxAge: 60000 } 
 
 
 io.sockets.on('connection', function (socket) {

@@ -6,18 +6,26 @@ angular.module('WeeknessApp')
     $scope.contrib = {
     	title: '',
     	body: '',
-    	weakness: '',
+    	weekness: '',
     	artifactType: '',
     	artifact: ''
     };
   	$scope.artifactTypes = ['image', 'other'];
-    $scope.artifactUploaded = false;
+    $scope.flags = {
+      artifactUploaded: false
+    };
+    $scope.actions = {
+      submit: function() {
+        //results(content, completed);
+        contribs.create($scope.contrib);
+      }
+    }
  
     // watch for file upload from jquery.fileupload-angular.js
     // and update value, which will be be validated by contrib-artifact
     // directive
     $scope.$on('fileuploaddone', function(e, response) {
-      $scope.artifactUploaded = true;
+      $scope.flags.artifactUploaded = true;
       var file = response.result.files[0], keys = _.keys(file), i, blacklist = [];
       for(i = 0; i < keys.length; i++) {
         if(keys[i].charAt(0) == '$')
@@ -31,13 +39,6 @@ angular.module('WeeknessApp')
     // artifact validation status
     $scope.$watch('contrib.artifactType', function() {
       $scope.files = [];
-      $scope.artifactUploaded = false;
+      $scope.flags.artifactUploaded = false;
     });
-
-    $scope.submit = function() {
-    	console.log('in');
-
-      //results(content, completed);
-      contribs.create($scope.contrib);
-    }
   });

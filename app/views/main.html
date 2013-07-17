@@ -1,6 +1,35 @@
-<div class="container isotope">
-	<div ng-repeat="contrib in contribs" contrib-main="contrib">a</div>
+<div class="container">
+	<div class="row-fluid">
+  		<div class="span1">
+			<span id="options" class="option-combo">
+				<h3>Sort By</h3>
+				<!-- iso-sortby-data must come before opt-kind -->
+				<ul iso-sortby-data opt-kind ok-key="sortBy" opt-publish="my-iso-opts" >
+					<li><a ok-sel=".name" class='selected'>Name</a></li>
+					<li><a ok-sel="[number]" ok-type="integer">Number</a></li>
+			  		<li><a ok-sel="[date]" ok-type="integer">Date</a></li>
+				</ul>
+			</span>
+			<div class="clearfix"/>
+			<span id="options" class="option-combo">
+			    <h3>Filter</h3>
+			    <ul opt-kind ok-key="filter" opt-publish="my-iso-opts">
+					<li><a ok-sel="*" class="selected">Show All</a></li>
+					<li><a ok-sel=".health">health</a></li>
+					<li><a ok-sel=".tech">tech</a></li>
+					<li><a ok-sel=".home">home</a></li>
+					<li><a ok-sel=".boats">boats</a></li>
+					<li><a ok-sel=".boots">boots</a></li>
+					<li><a ok-sel=".booties">booties</a></li>
+				</ul>
+			</span>
+		</div>
+		<ul id="isotopeContainer" isotope-container iso-options-subscribe="my-iso-opts" iso-method-subscribe="my-iso-method" class="span11">
+    		<li ng-repeat="contrib in contribs" isotope-item class="kindling {{ contrib.weekness }}">
+				<img ng-src="{{ contrib.artifact.thumbnail_url }}" />
+       			<div class="title">{{ contrib.title }}</div>
+       			<div class="date" date="{{ contrib.updated }}">{{ contrib.updated | date }}</div>
+			</li>
+		</ul>
+	</div>
 </div>
-<div>{{ value }}</div>
-TEST!
-<div contrib-main>asf</div>

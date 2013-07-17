@@ -51,8 +51,10 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/{,*/}*.html',
           '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
           '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
-          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-        ]
+          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '!{.tmp,<%= yeoman.app %>}/scripts/vendor/angular-weekness.js',
+        ],
+        tasks: [ 'uglify:angweek' ]
       },
       express: {
         files:  [ 'express/*.js' ],
@@ -180,9 +182,12 @@ module.exports = function (grunt) {
     },
     // not used since Uglify task does concat,
     // but still available if needed
-    /*concat: {
-      dist: {}
-    },*/
+    concat: {
+      angweek: {
+        src: ['app/scripts/module.js', 'app/scripts/controllers/*.js', 'app/scripts/directives/*.js', 'app/scripts/services/*.js'],
+        dest: 'app/scripts/vendor/angular-weekness.js'
+      }
+    },
     rev: {
       dist: {
         files: {
@@ -315,6 +320,15 @@ module.exports = function (grunt) {
       }
     },
     uglify: {
+      options: {
+        mangle: false,
+        compress: false
+      },
+      angweek: {
+        files: {
+          'app/scripts/vendor/angular-weekness.js' : ['app/scripts/module.js', 'app/scripts/controllers/*.js', 'app/scripts/directives/*.js', 'app/scripts/services/*.js']
+        }
+      },
       dist: {
         files: {
           '<%= yeoman.dist %>/scripts/scripts.js': [
@@ -363,8 +377,10 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'rev',
-    'usemin',
-    'concurrent:target'
+    'usemin'
+    'bgShell:upload',
+    'express',
+    'express-keepalive'
   ]);
 
   grunt.registerTask('default', [
@@ -374,6 +390,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('express-server', [
+    'concat',
     'clean:server',
     'concurrent:server',
     'bgShell:upload',

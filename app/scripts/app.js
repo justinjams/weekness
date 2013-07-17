@@ -1,5 +1,6 @@
 'use strict';
-var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-interceptor', 'ngCookies', 'ngResource', 'blueimp.fileupload'])
+
+var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-interceptor', 'ngCookies', 'ngResource', 'blueimp.fileupload', 'iso.directives'])
   .config(function ($locationProvider, $stateProvider, $routeProvider, $httpProvider, fileUploadProvider) {
     $stateProvider
       .state('index', {
@@ -38,15 +39,23 @@ var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-in
               }
           }
       })
-      .state('upload', {
-          url: "/upload",
+      .state('faker', {
+          url: "/faker",
           views: {
               "content": {
-                templateUrl: 'views/partials/fileUpload.html',
-                controller: 'FileUploadCtrl'
+                templateUrl: 'views/faker.html',
+                controller: 'ContribCtrl'
               }
           }
-      });
+      })
+      .state('isotest', {
+        url: "/isotest",
+        views: {
+          "content": {
+            templateUrl: 'views/isotest.html'
+          }
+        }
+      })
     $routeProvider.when('/upload', {templateUrl: 'views/partials/fileUpload.html', controller: 'FileUploadCtrl'});
 
 

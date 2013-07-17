@@ -1,10 +1,15 @@
 <div class="hero-unit">
-	<h2>Contribute</h2>
-  	<div ng-controller="ContribCtrl">
+	<div ng-controller="FakerCtrl">
+		<form>
+			<h2>How many phonies?</h2>
+			<input type="text" ng-model="fakeCount"></input>
+			<input type="submit" class="btn" ng-click="fake()" ng-disabled="processing || fakeCount<1" value="FAKE N BAKE" />
+		</form>
+<!-- pasted contribution form -->
   		<form name="form">
 			<label for="title">Title:</label> <input required type="textarea" ng-model="contrib.title" /><br />
 			<label for="body">Body:</label> <input required type="text" ng-model="contrib.body" name="body" /><br />
-			<label for="weekness">Weekness:</label> <input required type="text" ng-model="contrib.weekness" /><br />
+			<label for="weekness">Weakness:</label> <input required type="text" ng-model="contrib.weekness" /><br />
 			<label for="type">Type:</label> <select name="type" ng-model="contrib.artifactType">
 				<option value="" disabled selected>Choose upload type</option>
 				<option ng-repeat="type in artifactTypes">{{ type }}</option>
@@ -91,8 +96,9 @@
 				No way to upload that!
 			</div>
 		</div>
-		<input ng-model="flags.artifactUploaded" contrib-artifact hidden /><br />
+		<input ng-model="flags.artifactUploaded" contrib-artifact hidden \><br />
 		<input type="submit" class="btn" ng-click="actions.submit()" ng-disabled="!form.$valid" value="Submit" />
 		</form>
+<!-- pasted contribution form -->
 	</div>
 </div>

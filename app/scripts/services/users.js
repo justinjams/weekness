@@ -65,14 +65,11 @@ angular.module('WeeknessApp')
 				});
 			},
 			create: function(user) {
-				$user = new db.User(user);
-				$user.$save(function(){
+				db.User.save(user, {}, function(e){
 					authService.loginConfirmed();
 					console.log('Created account for '+user.username);
-					console.log(user);
-					return true;
+					console.log(e);
 				});
-				return false;
 			}
 		};
 	});

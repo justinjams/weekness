@@ -3,6 +3,6 @@
 angular.module('WeeknessApp')
   .filter('contribMain', function () {
     return function (input) {
-      return 'contribMain filter: ' + input;
+      return 'contribMain filter: ' + input.title;
     };
   });
