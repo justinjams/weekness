@@ -31,6 +31,10 @@ module.exports = function (grunt) {
   grunt.initConfig({
     yeoman: yeomanConfig,
     watch: {
+      jade: {
+        files: ['<%= yeoman.app %>/{,*/}*.jade'],
+        tasks: ['jade:dist']
+      },
       coffee: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
         tasks: ['coffee:dist']
@@ -53,8 +57,7 @@ module.exports = function (grunt) {
           '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
           '!{.tmp,<%= yeoman.app %>}/scripts/vendor/angular-weekness.js',
-        ],
-        tasks: [ 'uglify:angweek' ]
+        ]
       },
       express: {
         files:  [ 'express/*.js' ],
@@ -108,7 +111,7 @@ module.exports = function (grunt) {
           bases: [ path.resolve('.tmp'), path.resolve(yeomanConfig.app) ],
           monitor: {},
           debug: true,
-          server: path.resolve('server/express')
+          server: path.resolve('server')
         }
       }
     },
@@ -159,6 +162,20 @@ module.exports = function (grunt) {
         }]
       }
     },
+    jade: {
+        dist: {
+            options: {
+                pretty: true
+            },
+            files: [{
+                expand: true,
+                cwd: '<%= yeoman.app %>',
+                dest: '.tmp',
+                src: '{,*/}*.jade',
+                ext: '.html'
+            }]
+        }
+    },
     compass: {
       options: {
         sassDir: '<%= yeoman.app %>/styles',
@@ -200,19 +217,26 @@ module.exports = function (grunt) {
         }
       }
     },
+    /*
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
       options: {
         dest: '<%= yeoman.dist %>'
       }
+    },*/
+    useminPrepare: {
+        html: '.tmp/{,*/}*.html',
+        options: {
+            dest: '<%= yeoman.dist %>'
+        }
     },
-    usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
-      css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
-      options: {
-        dirs: ['<%= yeoman.dist %>']
-      }
-    },
+    // usemin: {
+    //   html: ['<%= yeoman.dist %>/{,*/}*.html'],
+    //   css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+    //   options: {
+    //     dirs: ['<%= yeoman.dist %>']
+    //   }
+    // },
     imagemin: {
       dist: {
         files: [{
@@ -251,7 +275,7 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= yeoman.app %>',
+          cwd: '.tmp',
           src: ['*.html', 'views/*.html'],
           dest: '<%= yeoman.dist %>'
         }]
@@ -285,7 +309,8 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'coffee:dist',
-        'compass:server'
+        'compass:server',
+        'jade:dist'
       ],
       test: [
         'coffee',
@@ -377,7 +402,7 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'rev',
-    'usemin'
+    'usemin',
     'bgShell:upload',
     'express',
     'express-keepalive'
@@ -390,7 +415,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('express-server', [
-    'concat',
     'clean:server',
     'concurrent:server',
     'bgShell:upload',

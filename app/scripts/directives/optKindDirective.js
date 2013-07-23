@@ -1,6 +1,5 @@
 'use strict';
 
-
 angular.module('iso.directives')
 	.directive('optKind', function(){
   return {

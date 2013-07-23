@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('WeeknessApp')
-  .service('contribs', function contribs(db, $rootScope) {
+  .service('contribs', function contribs(db, $rootScope, users) {
 		var $error = '';
 		var $contribFields = [
 			'title',
@@ -32,6 +32,7 @@ angular.module('WeeknessApp')
 				var time = new Date().getTime();
 				contrib.created = time;
 				contrib.updated = time;
+				contrib.owner = users.user.get('_id')._id;
 				db.Contrib.save(contrib, {}, function(e){
 					console.log(e);
 					console.log('Created contrib: '+contrib.title);

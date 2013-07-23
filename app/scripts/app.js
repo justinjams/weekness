@@ -48,14 +48,25 @@ var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-in
               }
           }
       })
-      .state('isotest', {
-        url: "/isotest",
+      .state('login', {
+        url: "/login",
         views: {
           "content": {
-            templateUrl: 'views/isotest.html'
+            templateUrl: 'views/login.html',
+            controller: 'LoginCtrl'
           }
         }
       })
+      .state('fbLogin', {
+        url: "/fbLogin",
+        views: {
+          "content": {
+            templateUrl: 'views/fbLogin.html',
+            controller: 'FbLoginCtrl'
+          }
+        }
+      });
+
     $routeProvider.when('/upload', {templateUrl: 'views/partials/fileUpload.html', controller: 'FileUploadCtrl'});
 
 

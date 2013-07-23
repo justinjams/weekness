@@ -1,5 +1,6 @@
+'use strict';
+
 var angularIsotopeCtrl = function($scope, $timeout, optionsStore) {
-	'use strict';
 
 	var onLayoutEvent = "isotope.onLayout"
 	, postInitialized = false
@@ -14,6 +15,8 @@ var angularIsotopeCtrl = function($scope, $timeout, optionsStore) {
 	$scope.layoutEventEmit = function($elems, instance) {
 		$timeout(function() {
 			$scope.$apply(function() {
+				//if(onLayoutEvent);
+				//console.log(onLayoutEvent);
 				$scope.$emit(onLayoutEvent);
 			});
 		});

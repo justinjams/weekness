@@ -3,19 +3,19 @@
 angular.module('WeeknessApp')
   .controller('RegisterCtrl', function ($scope, users, $location, $state) {
     // init data
-  	$scope.authError = 'no-error';
+  	$scope.status = '';
   	$scope.user = users.user.get();
-    $scope.user.role = 'user';
 
-    // init ui
-    //$('.btn-group').button()
+    $scope.$on('available', function () {
+      $scope.status = 'available';
+    });
 
-    $scope.availability = function(e) {
-      users.authenticate(e.target.form[0].value);
+    $scope.avail = function(e) {
+      users.avail({ email: e.target.form[0].value });
     };
 
     $scope.submit = function() {
-      users.create($scope.user);
+      users.register($scope.user);
     }
 
     $scope.getNumber = function(num) {
@@ -23,12 +23,11 @@ angular.module('WeeknessApp')
     }
 
     $scope.$on('authentication', function(e, response) {
-        $scope.authError = response;
+        $scope.status = response;
         console.log(response);
     });
 
-    $scope.$on('event:auth-loginConfirmed', function() {
-      $scope.user = users.user.get();
+    $scope.$on('authenticated', function() {
       $state.transitionTo('main');
     });
   });

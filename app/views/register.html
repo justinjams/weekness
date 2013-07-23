@@ -2,13 +2,14 @@
     <h2>Register</h2>
     <p>
         <form name="authForm">
-            <input type="text" ng-model="user.username" placeholder="username" /><br />
-            <div ng-switch on="authError">
+            <input type="text" ng-model="user.email" placeholder="email" /><br />
+            <div ng-switch on="status">
             	<div ng-switch-when="available">
             		<input type="text" ng-model="user.password" placeholder="password" /><br />
-            		<input type="text" ng-model="user.email" placeholder="email" /><br />
-            		<input type="text" ng-model="user.city" placeholder="city" /><br />
-            		<input type="text" ng-model="user.state" placeholder="state" /><br />
+                    <input type="text" ng-model="user.name.first" placeholder="firstName" /><br />
+                    <input type="text" ng-model="user.name.last" placeholder="lastName" /><br />
+                    <input type="text" ng-model="user.city" placeholder="city" /><br />
+                    <input type="text" ng-model="user.state" placeholder="state" /><br />
             		<input type="text" ng-model="user.country" placeholder="country" /><br />
             		<div class="btn-group">
                 <button type="button" class="btn btn-primary" ng-model="user.gender" btn-radio="'Male'">Male</button>
@@ -22,7 +23,7 @@
             		<button class="btn blue" ng-click="submit()">Create account</button>
             	</div>
             	<div ng-switch-default>
-            		<button class="btn" type="availability" ng-click="availability($event)">Check availability</button>
+            		<button class="btn" type="availability" ng-click="avail($event)">Check availability</button>
             		<button class="btn" type="recover" ng-click="recover()">Recover account</button>
             	</div>
         </form>

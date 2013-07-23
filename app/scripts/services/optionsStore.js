@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('iso.services', [], function($provide) {
   $provide.factory('optionsStore', function() {
     'use strict';
