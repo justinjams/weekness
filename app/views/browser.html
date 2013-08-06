@@ -1,0 +1,8 @@
+Here we are in browser!
+<div class="row-fluid">
+	<div ng-repeat="boxie in boxies" ng-switch="boxie.type"> 
+		<div ng-switch-when="weekness" weekness-view data-settings="boxie"></div>
+		<div ng-switch-when="page" page-view data-settings="boxie"></div>
+		<div ng-switch-default>unable to load {{ boxie.type }} type</div>
+	</div>
+</div>

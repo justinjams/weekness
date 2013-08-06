@@ -1,40 +1,40 @@
+/*global $ */
 'use strict';
 
 angular.module('iso.directives')
 	.directive('optKind', function(){
   return {
-    restrict: 'A'
-    , replace: true
-    , link: function(scope, element, attrs) {
-      var optionSet = $(element)
-      , optPublish = attrs.optPublish || "opt-kind"
-      , optKey = optionSet.attr('ok-key')
-      , selected = optionSet.find('.selected')
-      , preSelectOptions = {}
-      ;
+    restrict: 'A',
+    replace: true,
+    link: function(scope, element, attrs) {
+      var optionSet = $(element),
+        optPublish = attrs.optPublish || 'opt-kind',
+        optKey = optionSet.attr('ok-key'),
+        selected = optionSet.find('.selected');
+      // preSelectOptions = {};
 
       // Emit dynamically made option object, e.g. {filter:'.my-filter-class'}
       var createOptions = function(item) {
         if (item) {
-          var option = {}
-          , virtualSortByKey = item.attr('ok-sortby-key')
-          , ascAttr = item.attr('opt-ascending')
-          , key = virtualSortByKey || item.attr('ok-sel')
-          ;
+          var option = {},
+           virtualSortByKey = item.attr('ok-sortby-key'),
+           ascAttr = item.attr('opt-ascending'),
+           key = virtualSortByKey || item.attr('ok-sel');
+
           if (virtualSortByKey) {
-            option['sortAscending'] = ascAttr ?  ascAttr === 'true' : true;
+            option.sortAscending = ascAttr ?  ascAttr === 'true' : true;
           }
           option[optKey] = key;
 
           return option;
         }
-      }
-      , emitOption = function(option) {
+      },
+      emitOption = function(option) {
         scope.preSelectOptions = $.extend.apply( null, [true, scope.preSelectOptions].concat(option) );
-        option['ok'] = scope.preSelectOptions;
+        option.ok = scope.preSelectOptions;
         scope.$emit(optPublish, option);
-      }
-      , doOption = function(event) {
+      },
+      doOption = function(event) {
         event.preventDefault();
 
         var selItem = $(event.target);
@@ -50,8 +50,7 @@ angular.module('iso.directives')
         emitOption(createOptions(selItem));
 
         return false;
-      }
-      ;
+      };
 
       // Initialize to selected values
       if (selected.length) {

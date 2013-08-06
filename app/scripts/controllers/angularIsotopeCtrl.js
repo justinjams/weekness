@@ -1,18 +1,22 @@
 'use strict';
 
-var angularIsotopeCtrl = function($scope, $timeout, optionsStore) {
+angular.module('WeeknessApp')
+	.controller('AngularIsotopeCtrl', function($scope, $timeout, optionsStore) {
 
-	var onLayoutEvent = "isotope.onLayout"
-	, postInitialized = false
-	, isotopeContainer = null
-	, buffer = []
-	, scope = ""
-	, isoMode = ""
-	;
+	var onLayoutEvent = 'isotope.onLayout',
+		postInitialized = false,
+		isotopeContainer = null;
+		/*
+		jshint reports: 'W098: 'var' is defined but never used.'
+		buffer = [],
+		scope = '',
+		isoMode = '';
+		*/
 
-	$scope.$on(onLayoutEvent, function(event) {});
+	$scope.$on(onLayoutEvent, function(/* event */) {});
 
-	$scope.layoutEventEmit = function($elems, instance) {
+	$scope.layoutEventEmit = function() {
+		// passed $elems, instance, but have no use
 		$timeout(function() {
 			$scope.$apply(function() {
 				//if(onLayoutEvent);
@@ -25,14 +29,16 @@ var angularIsotopeCtrl = function($scope, $timeout, optionsStore) {
 	optionsStore.store({onLayout: $scope.layoutEventEmit});
 
 	var initEventHandler = function(fun, evt, hnd) {
-		if (evt) fun.call($scope, evt, hnd);
+		if (evt) {
+			fun.call($scope, evt, hnd);
+		}
 	};
 
 	$scope.init = function(isoInit) {
 		isotopeContainer = isoInit.element;
 		initEventHandler($scope.$on, isoInit.isoOptionsEvent, optionsHandler);
 		initEventHandler($scope.$on, isoInit.isoMethodEvent, methodHandler);
-		$scope.isoMode = isoInit.isoMode || "addItems";
+		$scope.isoMode = isoInit.isoMode || 'addItems';
 
 		$timeout(
 				function() {
@@ -88,4 +94,4 @@ var angularIsotopeCtrl = function($scope, $timeout, optionsStore) {
 		isotopeContainer.isotope();
 	};
 
-};
+});

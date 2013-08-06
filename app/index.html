@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
 </head>
-  <body class="container" ng-app="WeeknessApp">
+  <body class="container-fluid" ng-app="WeeknessApp">
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -26,62 +26,70 @@
     <![endif]-->
 
     <div class="row-fluid">
-        <div class="span4 brand">
-            <h1><a href="#">Weekness</a></h1>
+        <div class="span3" id="sideBar">
+            <div class="brand">
+                <h1><a href="#">Weekness</a></h1>
+            </div>
+            <nav class="sideBarItems" ng-controller="SideBarCtrl">
+                <ul class="nav nav-list">
+                    <li ng-repeat="subscriptions in sideBarItems.subscriptions" class="{{ subscriptions.name }} {{ $parent.isActive(subscriptions.url) }}"><a ng-click="transitionTo(subscriptions)">{{ subscriptions.title }}</a></li>
+                    <li ng-repeat="categories in sideBarItems.categories" class="{{ categories.name }} {{ $parent.isActive(categories.url) }}"><a ng-click="transitionTo(categories)">{{ categories.title }}</a></li>
+                    <li ng-repeat="menu in sideBarItems.menu" class="{{ menu.name }} {{ $parent.isActive(menu.url) }}"><a ng-click="transitionTo(menu)">{{ menu.title }}</a></li>
+                </ul>
+            </nav>
             <br><a href="#/faker">Fake some content!</a>
         </div>
-        <div class="span4">
-            <div ng-controller="DebugCtrl" style="max-height:150px; overflow:scroll">
-                <table class="table-striped">
-                    <tr ng-repeat="entry in debug_log"><td>{{ entry }}<td></tr>
-                </table>
-            </div>
-        </div>
-        <div class="span4">
-            <div ng-controller="LoginCtrl">
-                <div ng-repeat="error in errors">
-                    <div class="alert alert-error">{{ error }}</div>
-                </div>
-                <div ng-switch on="user.role">
-                    <div ng-switch-when="user">
-                        <h3>Hello, <strong>{{ user.name.first }}</strong>!</h3>
-                        <a href="#/contrib">
-                            <div class="btn-large">
-                                Contribute
+        <div class="span9" id="browser">
+            <div ng-controller="LoginCtrl" class="btn-group">
+                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i>{{ login_or_first_name }} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div ng-switch on="user.role">
+                            <div ng-switch-when="user">
+                                <h3>Hello, <strong>{{ user.name.first }}</strong>!</h3>
+                                <a href="#/contrib">
+                                    <div class="btn-large">
+                                        Contribute
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div ng-click="logout()">Logout</div>
+                                </a>
                             </div>
-                        </a>
-                        <a href="#">
-                            <div ng-click="logout()">Logout</div>
-                        </a>
-                        <button class="btn" ng-click="update()">Update</button>
-                    </div>
-                    <div ng-switch-default>
-                        <form name="authForm">
-                          <input type="text" ng-model="email" placeholder="Email" /><br />
-                          <input type="password" ng-model="password" placeholder="Password" /><br />
-                          <button class="btn" ng-click="login($event)">Login</button>
-                          <a href="auth/facebook" class="btn">Login with FB</a>
-                          <br />
-                          <a href="#/register">Register/Forgot Password</a>
-                        </form>
-                    </div>
-                </div>
+                            <div ng-switch-default>
+                                <div ng-repeat="error in errors">
+                                    <div class="alert alert-error">{{ error }}</div>
+                                </div>
+                                <form name="authForm">
+                                  <input type="text" ng-model="email" placeholder="Email" /><br />
+                                  <input type="password" ng-model="password" placeholder="Password" /><br />
+                                  <button class="btn" ng-click="login($event)">Login</button>
+                                  <a href="auth/facebook" class="btn">Login with FB</a>
+                                  <br />
+                                  <a href="#/register">Register/Forgot Password</a>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+           
+            <!--- end .topBar -->
+            <!-- Add your site or application content here -->
+            <div ui-view="content">
+                <script src="http://localhost:35729/livereload.js"></script>
             </div>
         </div>
     </div>
 
-    <!-- Add your site or application content here -->
-    <div class="container" ui-view="content">
-        <script src="http://localhost:35729/livereload.js"></script>
-    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
+    <!-- <script>
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
       g.src='//www.google-analytics.com/ga.js';
       s.parentNode.insertBefore(g,s)}(document,'script'));
-    </script>
+    </script> -->
 
     <!-- We have to load jQuery first for plugins which require -->
     <!-- jQuery rather than jqLite -->
@@ -121,7 +129,7 @@
         <script src="scripts/vendor/http-auth-interceptor.js"></script>
         <script src="scripts/vendor/underscore.js"></script>
         <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-        <script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js"></script>
+        <script src="bower_components/blueimp-load-image/js/load-image.min.js"></script>
         <script src="bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
         <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
         <script src="bower_components/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
@@ -142,24 +150,34 @@
         <script src="scripts/directives/isoSortByDataDirective.js"></script>
         <script src="scripts/directives/optKindDirective.js"></script>
 
-        <script src="scripts/services/contribs.js"></script>
+        <script src="scripts/services/api.js"></script>
+        <script src="scripts/services/categories.js"></script>
+        <script src="scripts/services/todos.js"></script>
+        <script src="scripts/services/dids.js"></script>
         <script src="scripts/services/db.js"></script>
-        <script src="scripts/services/users.js"></script>
+        <script src="scripts/services/user.js"></script>
         <script src="scripts/services/optionsStore.js"></script>
+        <script src="scripts/services/navi.js"></script>
+        <script src="scripts/services/weeknesses.js"></script>
 
         <script src="scripts/controllers/angularIsotopeCtrl.js"></script>
-        <script src="scripts/controllers/contribCtrl.js"></script>
+        <script src="scripts/controllers/didCreateCtrl.js"></script>
+        <script src="scripts/controllers/todoCreateCtrl.js"></script>
         <script src="scripts/controllers/debugCtrl.js"></script>
         <script src="scripts/controllers/fakerCtrl.js"></script>
         <script src="scripts/controllers/fileUploadCtrl.js"></script>
         <script src="scripts/controllers/fileDestroyCtrl.js"></script>
         <script src="scripts/controllers/isoSortByDataCtrl.js"></script>
         <script src="scripts/controllers/loginCtrl.js"></script>
-        <script src="scripts/controllers/mainCtrl.js"></script>
+        <script src="scripts/controllers/browserCtrl.js"></script>
         <script src="scripts/controllers/registerCtrl.js"></script>
+        <script src="scripts/controllers/sideBarCtrl.js"></script>
+        <script src="scripts/controllers/weeknessCreateCtrl.js"></script>
+        <script src="scripts/controllers/weeknessViewCtrl.js"></script>
 
         <script src="scripts/filters/contriBmainFilter.js"></script>
-        <script src="scripts/controllers/fbLogin.js"></script>
+        <script src="scripts/directives/pageViewDirective.js"></script>
+        <script src="scripts/directives/weeknessViewDirective.js"></script>
         <!-- endbuild -->
 </body>
 </html>

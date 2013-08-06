@@ -151,7 +151,7 @@ everyauth
     .loginWith('email')
     .getLoginPath('/login')
     .postLoginPath('/login')
-    .loginView('<p>Success!</p>')//../app/views/login.jade')
+    .loginView('../app/views/login.jade')
     .authenticate( function (login, password) {
         console.log('authorization attempt for user: '+login+' // '+password);
       var errors = [],
@@ -384,7 +384,6 @@ var objectId = function (_id) {
 var fn = function (req, res) {
     res.contentType('application/json');
     var fn = function (err, doc) { 
-    //console.log('asdasdas',req.body ,err,doc)
         if (err) { 
             if (err.message) {
                 doc = {error : err.message} 
@@ -399,11 +398,6 @@ var fn = function (req, res) {
 };
 
 /* Routes */
-app.get('/success', function(req, res) {
-    console.log('Success!');
-    res.send('Success!');
-});
-
 app.get('/user', function(req, res) {
     if(req.user){
         res.send(req.user);
@@ -508,6 +502,7 @@ app.put('/api/:collection/:cmd',  function (req, res) {
   app.use.apply(app, arguments);
 };
 
+/*
 app.post('/upload', function (req, res) {
     console.log('Hello, transfer!');
     console.log(req);
@@ -530,5 +525,6 @@ app.post('/upload', function (req, res) {
         (req.param('delay', 'yes') == 'yes') ? 2000 : -1
     );
 });
+*/
 
 exports.express = express;

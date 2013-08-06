@@ -1,6 +1,16 @@
 @import "bootstrap-sass/lib/bootstrap";
 
-/* Put your CSS here */
+/* Our CSS here */
+#sideBar {
+  background: #ddd;
+}
+
+#browser {
+  overflow: hidden;
+  height: 600px;
+}
+
+/* Stuff that was here before I got here */
 html, body {
   margin: 20px;
 }

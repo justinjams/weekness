@@ -49,39 +49,22 @@ Rest API - Node/MongoDB/Angular
     .aggregate: postData = { <query aggregate expresion> }
 
 **/
-var res;
 angular.module('WeeknessApp')
-    .factory('db', function($resource, $http) {
-        var db = {};
-		var actions = {
-                'count': {method:'PUT', params:{_id: 'count'}},                           
-                'distinct': {method:'PUT', params:{_id: 'distinct'}},      
-                'find': {method:'PUT', params:{_id: 'find'}, isArray:true},              
-                'group': {method:'PUT', params:{_id: 'group'}, isArray:true},            
-                'mapReduce': {method:'PUT', params:{_id: 'mapReduce'}, isArray:true},  
-                'aggregate': {method:'PUT', params:{_id: 'aggregate'}, isArray:true}
-            };
-        db.User = $resource('/api/users/:id', {}, actions);
-        db.Contrib = $resource('/api/contribs/:id', {}, actions);
-        //$http.get('http://localhost:30860/api/user', {});
-        //db.Contrib = $resource('api/contribs/:_id', {}, action);
-		// AngularJS will instantiate a singleton by calling "new" on this function
-		return db;
-    });
-    /*
-    .factory('User', function($resource, $http) {
-        var actions = {
-            'count': {method:'PUT', params:{_id: 'count'}},                           
-            'distinct': {method:'PUT', params:{_id: 'distinct'}},      
-            'find': {method:'PUT', params:{_id: 'find'}, isArray:true},              
-            'group': {method:'PUT', params:{_id: 'group'}, isArray:true},            
-            'mapReduce': {method:'PUT', params:{_id: 'mapReduce'}, isArray:true} ,  
-            'aggregate': {method:'PUT', params:{_id: 'aggregate'}, isArray:true}   
-        }
-        res = $resource('http://localhost\\:30860/api/users/:_id', {}, actions);
-        //Object.defineProperty(res.prototype, "teste", {get:function(){this.age}})
-        //res.prototype.teste = "test"
-        //console.log(res)
-        return res
-    });
-*/
+ .factory('db', function($resource) {
+    var db = {};
+    var actions = {
+        'count': {method:'PUT', params:{_id: 'count'}},
+        'distinct': {method:'PUT', params:{_id: 'distinct'}},
+        'find': {method:'PUT', params:{_id: 'find'}, isArray:true},
+        'group': {method:'PUT', params:{_id: 'group'}, isArray:true},
+        'mapReduce': {method:'PUT', params:{_id: 'mapReduce'}, isArray:true},
+        'aggregate': {method:'PUT', params:{_id: 'aggregate'}, isArray:true}
+      };
+    db.User = $resource('/api/users/:id', {}, actions);
+    db.Todo = $resource('/api/todos/:id', {}, actions);
+    db.Did = $resource('/api/dids/:id', {}, actions);
+    db.Weekness = $resource('/api/weeknesses/:id', {}, actions);
+    db.Category = $resource('/api/categories/:id', {}, actions);
+
+    return db;
+  });

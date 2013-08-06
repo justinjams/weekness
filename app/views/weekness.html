@@ -1,6 +1,14 @@
-<div class="container">
+<div ng-controller="WeeknessViewCtrl" ng-show="weekness">
+	<h4>{{ weekness.title }}</h4>
+	<section class="todo">
+		<ul>
+			<li style="display:inline" ng-repeat="todoLink in todoLinks">
+				<a ng-click="">{{ todoLink.title }}</a>
+			</li>
+		</ul>
+		<h3>{{ todo.title }}</h3>
+	</section>
 	<div class="row-fluid">
-  		<div class="span1">
 			<span id="options" class="option-combo">
 				<h3>Sort By</h3>
 				<!-- iso-sortby-data must come before opt-kind -->
@@ -10,21 +18,16 @@
 			  		<li><a ok-sel="[date]" ok-type="integer">Date</a></li>
 				</ul>
 			</span>
-			<div class="clearfix"/>
-			<span id="options" class="option-combo">
+
+			<!-- commenting instead of deleting for reference -->
+	<span id="options" class="option-combo">
 			    <h3>Filter</h3>
 			    <ul opt-kind id="filter" ok-key="filter" opt-publish="my-iso-opts">
-					<li><a ok-sel="*" class="selected">Show All</a></li>
-					<li><a ok-sel=".health">health</a></li>
-					<li><a ok-sel=".tech">tech</a></li>
-					<li><a ok-sel=".home">home</a></li>
-					<li><a ok-sel=".boats">boats</a></li>
-					<li><a ok-sel=".boots">boots</a></li>
-					<li><a ok-sel=".booties">booties</a></li>
+					<li><a ok-sel="playMapleLeafRag" class="selected">Play Maple Leaf Rag</a></li>
 				</ul>
 			</span>
 		</div>
-		<ul id="isotopeContainer" isotope-container iso-options-subscribe="my-iso-opts" iso-method-subscribe="my-iso-method" class="span11">
+		<ul id="isotopeContainer" isotope-container iso-options-subscribe="my-iso-opts" iso-method-subscribe="my-iso-method" class="row-fluid">
     		<li ng-repeat="contrib in contribs" isotope-item class="kindling {{ contrib.weekness }}">
 				<img ng-src="{{ contrib.artifact.thumbnail_url }}" />
        			<div class="title">{{ contrib.title }}</div>
@@ -32,4 +35,3 @@
 			</li>
 		</ul>
 	</div>
-</div>

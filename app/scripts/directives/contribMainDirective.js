@@ -1,3 +1,4 @@
+/*jshint unused: false */
 'use strict';
 
 angular.module('WeeknessApp')
@@ -5,9 +6,10 @@ angular.module('WeeknessApp')
     return {
       compile: function compile(iElement, iAttrs) {
         return function postLink(scope, iElement, iAttrs) {
-          if(scope.contrib)
+          if(scope.contrib) {
             iElement.text(scope.contrib.title);
-        }
+          }
+        };
       },
       template: '<div></div>',
       restrict: 'A',
@@ -16,3 +18,4 @@ angular.module('WeeknessApp')
       }
     };
   });
+/*jshint unused: true */
