@@ -21,21 +21,11 @@ var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-in
 				}
 			}
 		})
-		.state('contrib', {
-			url: '/contrib',
-			views: {
-				'content': {
-					templateUrl: 'views/contribForm.html',
-					controller: 'ContribCtrl'
-				}
-			}
-		})
 		.state('faker', {
 			url: '/faker',
 			views: {
 				'content': {
-					templateUrl: 'views/faker.html',
-					controller: 'ContribCtrl'
+					templateUrl: 'views/faker.html'
 				}
 			}
 		})
@@ -49,49 +39,88 @@ var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-in
 			}
 		})
 		.state('createWeekness', {
-			url: '/create',
+			url: '/create/weekness',
 			views: {
 				'content': {
-					templateUrl: 'views/weeknessForm.html',
+					templateUrl: 'views/partials/weeknessForm.html',
 					controller: 'WeeknessCreateCtrl'
 				}
 			}
 		})
-		.state('weekness', {
-			url: '/weekness',
+		.state('createDid', {
+			url: '/create/did',
 			views: {
 				'content': {
-					templateUrl: 'views/weekness.html'
+					templateUrl: 'views/partials/didForm.html',
+					controller: 'DidCreateCtrl'
 				}
 			}
 		})
-		.state('weeknesses', {
+		.state('createTodo', {
+			url: '/create/todo',
+			views: {
+				'content': {
+					templateUrl: 'views/partials/todoForm.html',
+					controller: 'TodoCreateCtrl'
+				}
+			}
+		})
+		.state('weekness', {
 			url: '/weekness/:weekness',
 			views: {
 				'content': {
-					templateUrl: 'views/weekness.html'
+					templateUrl: 'views/weekness.html',
+					controller: 'WeeknessViewCtrl'
 				}
 			}
 		})
-		.state('weeknessesDos', {
-			url: '/weekness/:weekness/do/:do',
+		.state('weeknessTodos', {
+			url: '/weekness/:weekness/todo/:todo',
 			views: {
 				'content': {
-					templateUrl: 'views/weekness.html'
+					templateUrl: 'views/weekness.html',
+					controller: 'WeeknessViewCtrl'
 				}
 			}
 		})
-		.state('weeknessesDosDids', {
-			url: '/weekness/:weekness/do/:do/did/:did',
+		.state('weeknessTodosDids', {
+			url: '/weekness/:weekness/todo/:todo/did/:did',
 			views: {
 				'content': {
-					templateUrl: 'views/weekness.html'
+					templateUrl: 'views/weekness.html',
+					controller: 'WeeknessViewCtrl'
+				}
+			}
+		})
+		.state('weeknessTop', {
+			url: '/weekness/:weekness/top',
+			views: {
+				'content': {
+					templateUrl: 'views/weekness.html',
+					controller: 'WeeknessViewCtrl'
+				}
+			}
+		})
+		.state('weeknessHistory', {
+			url: '/weekness/:weekness/history',
+			views: {
+				'content': {
+					templateUrl: 'views/weekness.html',
+					controller: 'WeeknessViewCtrl'
+				}
+			}
+		})
+		.state('weeknessNexts', {
+			url: '/weekness/:weekness/nexts',
+			views: {
+				'content': {
+					templateUrl: 'views/weekness.html',
+					controller: 'WeeknessViewCtrl'
 				}
 			}
 		});
 
-	$routeProvider.when('/upload', {templateUrl: 'views/partials/fileUpload.html', controller: 'FileUploadCtrl'});
-
+	//$routeProvider.when('/upload', {templateUrl: 'views/partials/fileUpload.html', controller: 'FileUploadCtrl'});
 
 	$locationProvider.html5Mode(false).hashPrefix('');
 

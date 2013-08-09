@@ -1,0 +1,24 @@
+<div ng-controller="TodoCreateCtrl">
+
+	<h2>Todo Create</h2>
+			<form name="form">
+		<label for="title">Title:</label> <input required type="textarea" ng-model="todo.title" /><br />
+		<label for="body">Body:</label> <input required type="text" ng-model="todo.body" name="body" /><br />
+		<label for="weekness">Weekness:</label> {{ todo.weekness }}<br />
+		<label for="type">Type:</label> <select name="type" ng-model="todo.artifactType">
+			<option value="" disabled selected>Choose upload type</option>
+			<option ng-repeat="type in artifactTypes">{{ type }}</option>
+		</select><br />
+	      <!-- <input class="btn" type="submit" id="submit" value="Submit" ng-click="submit()"/> -->
+	<div ng-switch on="todo.artifactType">
+		<div ng-switch-when="image">
+			<div ng-include src="'views/partials/fileUpload.html'"></div>
+		</div>
+		<div ng-switch-default>
+			No way to upload that!
+		</div>
+	</div>
+	<input ng-model="flags.artifactUploaded" todo-artifact hidden /><br />
+	<input type="submit" class="btn" ng-click="submit()" ng-disabled="!form.$valid" value="Submit" />
+	</form>
+</div>

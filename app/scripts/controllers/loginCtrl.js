@@ -7,8 +7,6 @@ angular.module('WeeknessApp')
 				$scope.login_or_first_name = 'Login';
 				$scope.$watch( function() { return api.user.get(); }, function (oldVal, newVal) {
 					$scope.user = api.user.get();
-					console.log(newVal);
-					console.log($scope.user);
 					if($scope.user) {
 						$scope.login_or_first_name = $scope.user.name.first;
 					} else {

@@ -32,9 +32,9 @@
             </div>
             <nav class="sideBarItems" ng-controller="SideBarCtrl">
                 <ul class="nav nav-list">
-                    <li ng-repeat="subscriptions in sideBarItems.subscriptions" class="{{ subscriptions.name }} {{ $parent.isActive(subscriptions.url) }}"><a ng-click="transitionTo(subscriptions)">{{ subscriptions.title }}</a></li>
-                    <li ng-repeat="categories in sideBarItems.categories" class="{{ categories.name }} {{ $parent.isActive(categories.url) }}"><a ng-click="transitionTo(categories)">{{ categories.title }}</a></li>
-                    <li ng-repeat="menu in sideBarItems.menu" class="{{ menu.name }} {{ $parent.isActive(menu.url) }}"><a ng-click="transitionTo(menu)">{{ menu.title }}</a></li>
+                    <li ng-repeat="subscription in sideBarItems.subscriptions" class="{{ subscription.name }} {{ $parent.isActive(subscription.url) }}"><a ng-click="transitionTo(subscription)">{{ subscription.title }}</a></li>
+                    <li ng-repeat="category in sideBarItems.categories" class="{{ category.name }} {{ $parent.isActive(category.url) }}"><a ng-click="transitionTo(category)">{{ category.title }}</a></li>
+                    <li ng-repeat="menuItem in sideBarItems.menu" class="{{ menuItem.name }} {{ $parent.isActive(menuItem.url) }}"><a ng-click="transitionTo(menuItem)">{{ menuItem.title }}</a></li>
                 </ul>
             </nav>
             <br><a href="#/faker">Fake some content!</a>

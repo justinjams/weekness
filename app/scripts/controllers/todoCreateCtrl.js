@@ -1,28 +1,29 @@
 'use strict';
 
 angular.module('WeeknessApp')
-.controller('ContribCtrl', function ($scope, api, _) {
+.controller('TodoCreateCtrl', function ($rootScope, $scope, api, _) {
 	$scope.percentage = 0;
-	$scope.contrib = {
+	$scope.todo = {
 		title: '',
 		body: '',
-		weekness: '',
+		weekness: api.getWeekness(),
 		artifactType: '',
 		artifact: ''
 	};
-	$scope.artifactTypes = ['image', 'other'];
+	$scope.artifactTypes = ['image', 'none'];
 	$scope.flags = {
 		artifactUploaded: false
 	};
-	$scope.actions = {
-		submit: function() {
+	$scope.submit = function() {
 			//results(content, completed);
-			api.contribs.create($scope.contrib);
-		}
+			$scope.todo.slug = api.slugify($scope.todo.title);
+			api.todos.create($scope.todo);
 	};
 
+
+
 	// watch for file upload from jquery.fileupload-angular.js
-	// and update value, which will be be validated by contrib-artifact
+	// and update value, which will be be validated by todo-artifact
 	// directive
 	$scope.$on('fileuploaddone', function(e, response) {
 		$scope.flags.artifactUploaded = true;
@@ -33,12 +34,12 @@ angular.module('WeeknessApp')
 			}
 		}
 		file = _.omit(file, blacklist);
-		$scope.contrib.artifact = file;
+		$scope.todo.artifact = file;
 	});
 
 	// when the select box is changed, we should reset our
 	// artifact validation status
-	$scope.$watch('contrib.artifactType', function() {
+	$scope.$watch('todo.artifactType', function() {
 		$scope.files = [];
 		$scope.flags.artifactUploaded = false;
 	});

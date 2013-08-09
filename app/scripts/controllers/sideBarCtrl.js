@@ -29,9 +29,8 @@ angular.module('WeeknessApp')
 		// console.log($location);
 		// console.log(item);
 	}
-
 	$scope.isActive = function(url) {
-		if($location.$$url === url) {
+		if($location.$$url.indexOf(url) !== -1) {
 			return 'active';
 		}
 	}

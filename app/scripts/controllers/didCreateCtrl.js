@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('WeeknessApp')
-.controller('ContribCtrl', function ($scope, api, _) {
+.controller('DidCreateCtrl', function ($scope, api, _) {
 	$scope.percentage = 0;
-	$scope.contrib = {
+	$scope.did = {
 		title: '',
 		body: '',
 		weekness: '',
@@ -17,12 +17,12 @@ angular.module('WeeknessApp')
 	$scope.actions = {
 		submit: function() {
 			//results(content, completed);
-			api.contribs.create($scope.contrib);
+			api.dids.create($scope.did);
 		}
 	};
 
 	// watch for file upload from jquery.fileupload-angular.js
-	// and update value, which will be be validated by contrib-artifact
+	// and update value, which will be be validated by did-artifact
 	// directive
 	$scope.$on('fileuploaddone', function(e, response) {
 		$scope.flags.artifactUploaded = true;
@@ -33,12 +33,12 @@ angular.module('WeeknessApp')
 			}
 		}
 		file = _.omit(file, blacklist);
-		$scope.contrib.artifact = file;
+		$scope.did.artifact = file;
 	});
 
 	// when the select box is changed, we should reset our
 	// artifact validation status
-	$scope.$watch('contrib.artifactType', function() {
+	$scope.$watch('did.artifactType', function() {
 		$scope.files = [];
 		$scope.flags.artifactUploaded = false;
 	});

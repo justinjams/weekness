@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('WeeknessApp')
-.service('navi', function navi($rootScope, $http, api, _) {
+.service('navi', function navi($rootScope, $http, api, _, $location) {
 	var $errors = [];
 
 	var categories = api.categories.get();
@@ -13,7 +13,7 @@ angular.module('WeeknessApp')
 			title: 'Beginner Piano',
 			name: 'BeginnerPiano',
 			url: '/weekness/BeginnerPiano',
-			state: 'weeknesses',
+			state: 'weekness',
 			params: {
 				weekness: 'BeginnerPiano'
 			}
@@ -22,7 +22,7 @@ angular.module('WeeknessApp')
 			title: 'Beginner AngularJS',
 			name: 'BeginnerAngularJS',
 			url: '/weekness/BeginnerAngularJS',
-			state: 'weeknesses',
+			state: 'weekness',
 			params: {
 				weekness: 'BeginnerAngularJS',
 			}
@@ -30,11 +30,11 @@ angular.module('WeeknessApp')
 		param_test: {
 			title: 'Beginner Piano',
 			name: 'BeginnerPiano',
-			url: '/weekness/BeginnerPiano/do/PlayMapleLeafRag',
-			state: 'weeknessesDos',
+			url: '/weekness/BeginnerPiano/todo/PlayMapleLeafRag',
+			state: 'weeknessTodos',
 			params: {
 				weekness: 'BeginnerPiano',
-				do: 'PlayMapleLeafRag'
+				todo: 'PlayMapleLeafRag'
 			}
 		}
 	};
@@ -43,7 +43,7 @@ angular.module('WeeknessApp')
 			createWeekness: {
 				title: 'Create Weekness',
 				name: 'createWeekness',
-				url: '/create',
+				url: '/create/weekness',
 				state: 'createWeekness',
 				params: {}
 				}

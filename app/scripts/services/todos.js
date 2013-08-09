@@ -5,6 +5,7 @@ angular.module('WeeknessApp')
 		var $error = '';
 		var $fields = [
 			'title',
+			'slug',
 			'body',
 			'weekness',
 			'artifactType',
@@ -33,7 +34,7 @@ angular.module('WeeknessApp')
 				todo.created = time;
 				todo.updated = time;
 				todo.owner = user.get()._id;
-				db.todo.save(todo, {}, function(e){
+				db.Todo.save(todo, {}, function(e){
 					console.log(e);
 					console.log('Created todo: '+todo.title);
 					$rootScope.$broadcast('tododone');

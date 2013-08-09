@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('WeeknessApp')
-  .service('api', function contribs(db, user, todos, dids, weeknesses, categories) {
+  .service('api', function contribs(db, user, todos, dids, weeknesses, categories, $location) {
 
 		return {
 			db: db,
@@ -11,6 +11,21 @@ angular.module('WeeknessApp')
 			categories: categories,
 			todos: todos,
 			dids: dids,
+			getCurrentTodo: function(weekness, callback) {
+				db.Todo.query({limit: 1, weekness: weekness.name, sort: 'expires', order: 'desc'}, {}, function(results) {
+					console.log(results);
+					callback(results[0]);
+				});
+			},
+			slugify: function(text) {
+    return text
+        .toLowerCase()
+        .replace(/ /g,'-')
+        .replace(/[^\w-]+/g,'');
+			},
+			getWeekness: function() {
+				return $location.$$url.match(/\/weekness\/([_0-9a-zA-Z]*)[^\/]*/)[1];
+			},
 			urlToParams: function(url) {
 				var tokens = url.split('/'),
 					i = 0,

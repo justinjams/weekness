@@ -1,0 +1,12 @@
+<h2>What's your Weekness?</h2>
+		<form name="form">
+	<label for="name">Name:</label> <input required type="textarea" ng-model="weekness.name" /><br />
+	<label for="title">Title:</label> <input required type="textarea" ng-model="weekness.title" /><br />
+	<label for="description">Description:</label> <input required type="text" ng-model="weekness.description" name="description" /><br />
+	<label for="type">Category:</label> <select name="type" ng-model="weekness.category">
+	<option ng-repeat="category in categories" value="{{ category.name }}">
+		{{ category.title }}
+	</option>
+</select>
+<input type="submit" class="btn" ng-click="actions.submit()" ng-disabled="!form.$valid" value="Submit" />
+</form>

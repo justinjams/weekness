@@ -9,6 +9,7 @@ angular.module('WeeknessApp')
 		category: ''
 	};
 	$scope.categories = api.categories.get();
+
 	$scope.actions = {
 		submit: function() {
 			//results(content, completed);

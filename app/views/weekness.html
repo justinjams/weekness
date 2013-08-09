@@ -1,37 +1,14 @@
-<div ng-controller="WeeknessViewCtrl" ng-show="weekness">
+<div ng-show="weekness">
 	<h4>{{ weekness.title }}</h4>
 	<section class="todo">
-		<ul>
-			<li style="display:inline" ng-repeat="todoLink in todoLinks">
-				<a ng-click="">{{ todoLink.title }}</a>
+		<ul class="nav-list">
+			<li style="display:inline" ng-repeat="shortcut in shortcuts.todo" class="{{ isActive(shortcut.url) }}">
+				<a ng-click="transitionTo(shortcut)">{{ shortcut.title }}</a>
 			</li>
 		</ul>
 		<h3>{{ todo.title }}</h3>
+		<a ng-click="showTodoForm = !showTodoForm">{{ showOrHideTodoForm() }} todo form</a>
+		<div ng-show="showTodoForm" ng-include src="'views/partials/todoForm.html'"></div>
+		{{ params.todo }}
 	</section>
-	<div class="row-fluid">
-			<span id="options" class="option-combo">
-				<h3>Sort By</h3>
-				<!-- iso-sortby-data must come before opt-kind -->
-				<ul iso-sortby-data opt-kind ok-key="sortBy" opt-publish="my-iso-opts" >
-					<li><a ok-sel=".name" class='selected'>Name</a></li>
-					<li><a ok-sel="[number]" ok-type="integer">Number</a></li>
-			  		<li><a ok-sel="[date]" ok-type="integer">Date</a></li>
-				</ul>
-			</span>
-
-			<!-- commenting instead of deleting for reference -->
-	<span id="options" class="option-combo">
-			    <h3>Filter</h3>
-			    <ul opt-kind id="filter" ok-key="filter" opt-publish="my-iso-opts">
-					<li><a ok-sel="playMapleLeafRag" class="selected">Play Maple Leaf Rag</a></li>
-				</ul>
-			</span>
-		</div>
-		<ul id="isotopeContainer" isotope-container iso-options-subscribe="my-iso-opts" iso-method-subscribe="my-iso-method" class="row-fluid">
-    		<li ng-repeat="contrib in contribs" isotope-item class="kindling {{ contrib.weekness }}">
-				<img ng-src="{{ contrib.artifact.thumbnail_url }}" />
-       			<div class="title">{{ contrib.title }}</div>
-       			<div class="date" date="{{ contrib.updated }}">{{ contrib.updated | date }}</div>
-			</li>
-		</ul>
 	</div>
