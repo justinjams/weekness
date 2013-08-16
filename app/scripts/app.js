@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-interceptor', 'ngCookies', 'ngResource', 'blueimp.fileupload', 'iso.directives'])
+var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-interceptor', 'ngCookies', 'ngResource', 'blueimp.fileupload', 'iso.directives', 'infinite-scroll'])
 .config(function ($locationProvider, $stateProvider, $routeProvider, $httpProvider, fileUploadProvider) {
 	$stateProvider
 		.state('index', {

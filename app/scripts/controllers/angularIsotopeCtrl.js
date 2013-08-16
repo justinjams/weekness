@@ -18,6 +18,8 @@ angular.module('WeeknessApp')
 	$scope.layoutEventEmit = function() {
 		// passed $elems, instance, but have no use
 		$timeout(function() {
+			//if($scope.$$phase === '$apply' || $scope.$$phase === '$digest')
+				//return;
 			$scope.$apply(function() {
 				//if(onLayoutEvent);
 				//console.log(onLayoutEvent);

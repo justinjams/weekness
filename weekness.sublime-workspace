@@ -71,31 +71,15 @@
 			"file": "app/views/weekness.html",
 			"settings":
 			{
-				"buffer_size": 1560,
+				"buffer_size": 597,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/browser.html",
+			"file": "app/views/partials/todos.html",
 			"settings":
 			{
-				"buffer_size": 334,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/scripts/directives/pageViewDirective.js",
-			"settings":
-			{
-				"buffer_size": 457,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/index.html",
-			"settings":
-			{
-				"buffer_size": 10742,
+				"buffer_size": 1193,
 				"line_ending": "Unix"
 			}
 		},
@@ -103,31 +87,63 @@
 			"file": "app/scripts/controllers/weeknessViewCtrl.js",
 			"settings":
 			{
-				"buffer_size": 1474,
+				"buffer_size": 2951,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/scripts/controllers/sideBarCtrl.js",
+			"file": "app/views/faker.html",
 			"settings":
 			{
-				"buffer_size": 840,
+				"buffer_size": 1448,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/scripts/services/navi.js",
+			"file": "app/scripts/controllers/fakerCtrl.js",
 			"settings":
 			{
-				"buffer_size": 1619,
+				"buffer_size": 3342,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/weeknessForm.html",
+			"file": "app/scripts/controllers/didsViewCtrl.js",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 954,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/partials/dids.html",
+			"settings":
+			{
+				"buffer_size": 1172,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/services/dids.js",
+			"settings":
+			{
+				"buffer_size": 1095,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/index.html",
+			"settings":
+			{
+				"buffer_size": 11190,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/controllers/todosViewCtrl.js",
+			"settings":
+			{
+				"buffer_size": 119,
 				"line_ending": "Unix"
 			}
 		},
@@ -140,10 +156,10 @@
 			}
 		},
 		{
-			"file": "app/scripts/controllers/didCreateCtrl.js",
+			"file": "app/styles/main.scss",
 			"settings":
 			{
-				"buffer_size": 1130,
+				"buffer_size": 1923,
 				"line_ending": "Unix"
 			}
 		},
@@ -151,47 +167,7 @@
 			"file": "app/scripts/app.js",
 			"settings":
 			{
-				"buffer_size": 3219,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/didForm.html",
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/scripts/controllers/todoCreateCtrl.js",
-			"settings":
-			{
-				"buffer_size": 1155,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/partials/todoForm.html",
-			"settings":
-			{
-				"buffer_size": 6081,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/partials/didForm.html",
-			"settings":
-			{
-				"buffer_size": 6173,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/partials/weeknessForm.html",
-			"settings":
-			{
-				"buffer_size": 705,
+				"buffer_size": 3640,
 				"line_ending": "Unix"
 			}
 		}
@@ -220,33 +196,45 @@
 	},
 	"file_history":
 	[
-		"/Users/justinhall/weekness/app/scripts/controllers/loginCtrl.js",
-		"/Users/justinhall/weekness/app/scripts/controllers/weeknessCreateCtrl.js",
+		"/Users/justinhall/weekness/app/scripts/controllers/angularIsotopeCtrl.js",
 		"/Users/justinhall/weekness/server.js",
-		"/Users/justinhall/weekness/app/views/didCreateForm.html",
-		"/Users/justinhall/weekness/.gitignore",
-		"/Users/justinhall/weekness/app/views/weeknessForm.html",
+		"/Users/justinhall/weekness/app/views/partials/todoForm.html",
+		"/Users/justinhall/weekness/bower.json",
+		"/Users/justinhall/weekness/app/bower_components/ui-router/package.json",
 		"/Users/justinhall/weekness/app/scripts/services/api.js",
 		"/Users/justinhall/weekness/app/scripts/services/dids.js",
+		"/Users/justinhall/weekness/app/scripts/controllers/didCreateCtrl.js",
+		"/Users/justinhall/weekness/app/views/partials/didForm.html",
+		"/Users/justinhall/weekness/app/scripts/controllers/todoCreateCtrl.js",
+		"/Users/justinhall/weekness/app/index.html",
+		"/Users/justinhall/weekness/app/scripts/app.js",
 		"/Users/justinhall/weekness/app/scripts/services/todos.js",
+		"/Users/justinhall/weekness/app/scripts/controllers/sideBarCtrl.js",
+		"/Users/justinhall/weekness/app/scripts/services/navi.js",
+		"/Users/justinhall/weekness/app/views/partials/fileUpload.html",
+		"/Users/justinhall/weekness/app/scripts/controllers/loginCtrl.js",
 		"/Users/justinhall/weekness/app/scripts/services/db.js",
+		"/Users/justinhall/weekness/app/styles/main.scss",
+		"/Users/justinhall/weekness/app/views/partials/nexts.html",
+		"/Users/justinhall/weekness/app/scripts/controllers/weeknessCreateCtrl.js",
+		"/Users/justinhall/weekness/app/views/browser.html",
+		"/Users/justinhall/weekness/app/scripts/directives/pageViewDirective.js",
+		"/Users/justinhall/weekness/app/views/partials/weeknessForm.html",
+		"/Users/justinhall/weekness/app/views/didForm.html",
+		"/Users/justinhall/weekness/app/scripts/controllers/weeknessViewCtrl.js",
+		"/Users/justinhall/weekness/app/views/weeknessForm.html",
+		"/Users/justinhall/weekness/app/views/didCreateForm.html",
+		"/Users/justinhall/weekness/.gitignore",
 		"/Users/justinhall/weekness/app/scripts/services/weeknesses.js",
 		"/Users/justinhall/weekness/app/scripts/services/user.js",
 		"/Users/justinhall/weekness/app/views/category.html",
 		"/Users/justinhall/weekness/app/scripts/controllers/browserCtrl.js",
 		"/Users/justinhall/weekness/app/scripts/services/categories.js",
-		"/Users/justinhall/weekness/app/scripts/services/navi.js",
-		"/Users/justinhall/weekness/app/scripts/app.js",
-		"/Users/justinhall/weekness/app/scripts/controllers/sideBarCtrl.js",
-		"/Users/justinhall/weekness/app/scripts/controllers/weeknessViewCtrl.js",
 		"/Users/justinhall/weekness/app/scripts/directives/weeknessViewDirective.js",
 		"/Users/justinhall/weekness/app/scripts/services/contribs.js",
-		"/Users/justinhall/weekness/app/index.html",
 		"/Users/justinhall/weekness/app/scripts/controllers/fakerCtrl.js",
 		"/Users/justinhall/weekness/app/scripts/controllers/sideBarItemsCtrl.js",
 		"/Users/justinhall/weekness/app/scripts/controllers/registerCtrl.js",
-		"/Users/justinhall/weekness/app/styles/main.scss",
-		"/Users/justinhall/weekness/app/views/browser.html",
 		"/Users/justinhall/weekness/app/scripts/controllers/weeknessCtrl.js",
 		"/Users/justinhall/weekness/app/scripts/directives/contribArtifactDirective.js",
 		"/Users/justinhall/weekness/app/scripts/controllers/contribCtrl.js",
@@ -271,7 +259,6 @@
 		"/Users/justinhall/weekness/scripts/controllers/loginCtrl.js",
 		"/Users/justinhall/weekness/scripts/controllers/isoSortByDataCtrl.js",
 		"/Users/justinhall/weekness/app/views/contrib.html",
-		"/Users/justinhall/weekness/app/scripts/controllers/angularIsotopeCtrl.js",
 		"/Users/justinhall/weekness/app/scripts/controllers/fbLogin.js",
 		"/Users/justinhall/weekness/app/views/fbLogin.html",
 		"/Users/justinhall/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
@@ -303,7 +290,6 @@
 		"/Users/justinhall/weekness/app/scripts/filters/contribMain.js",
 		"/Users/justinhall/weekness/app/views/faker.html",
 		"/Users/justinhall/weekness/app/scripts/controllers/faker.js",
-		"/Users/justinhall/weekness/app/views/partials/fileUpload.html",
 		"/Users/justinhall/weekness/app/scripts/controllers/register.js",
 		"/Users/justinhall/weekness/node_modules/blueimp-file-upload-node/server.js",
 		"/Users/justinhall/weekness/app/scripts/controllers/fileDestroy.js",
@@ -337,17 +323,7 @@
 		"/Users/justinhall/weekness/app/scripts/services/_db.js",
 		"/Users/justinhall/weekness/test.js.coffee",
 		"/Users/justinhall/weekness/.tmp/scripts/test.js",
-		"/Users/justinhall/weekness/app/scripts/vendor/mongolabResourceHttp.js",
-		"/Users/justinhall/weekness/.jshintrc",
-		"/Users/justinhall/weekness/app/scripts/vendor/http-auth-interceptor.js",
-		"/Users/justinhall/weekness/app/scripts/vendor/mongojs.js",
-		"/Users/justinhall/weekness/test/.jshintrc",
-		"/Users/justinhall/weekness/bower.json",
-		"/Users/justinhall/weekness/app/scripts/controllers/debug.js",
-		"/Users/justinhall/weekness/app/scripts/controllers/login.js",
-		"/Users/justinhall/weekness/app/scripts/services/Contribution.js",
-		"/Users/justinhall/weekness/app/scripts/services/User.js",
-		"/Users/justinhall/weekness/app/scripts/services/underscore.js"
+		"/Users/justinhall/weekness/app/scripts/vendor/mongolabResourceHttp.js"
 	],
 	"find":
 	{
@@ -362,9 +338,26 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
+			"class=\"{",
+			"login",
+			"contrib",
+			"POST",
+			"find",
+			"appl",
+			"digest",
+			"apply",
+			"last",
+			"fakeC",
+			"fake",
+			"currentTodo",
+			"state.",
+			".slug",
+			"currentT",
+			"sideBar",
+			"did",
 			"contrib",
 			"user",
 			"load",
@@ -475,24 +468,7 @@
 			"'auth",
 			"auth",
 			".password",
-			"jade:",
-			"jade",
-			"jade:",
-			"\n\njade:",
-			"jade:",
-			"coffee",
-			"server",
-			"-------------------------------------------------------------------------------------------------\n",
-			"fn(req",
-			"console.log",
-			"register",
-			".json",
-			"http.",
-			"send",
-			"findOr",
-			"db",
-			"User.",
-			"io."
+			"jade:"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -500,6 +476,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"did",
+			"todo",
 			"did",
 			"todo",
 			"do",
@@ -581,7 +559,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 8,
 			"sheets":
 			[
 				{
@@ -589,15 +567,15 @@
 					"file": "app/views/weekness.html",
 					"settings":
 					{
-						"buffer_size": 1560,
+						"buffer_size": 597,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								314,
-								314
+								279,
+								279
 							]
 						],
 						"settings":
@@ -613,23 +591,24 @@
 				},
 				{
 					"buffer": 1,
-					"file": "app/views/browser.html",
+					"file": "app/views/partials/todos.html",
 					"settings":
 					{
-						"buffer_size": 334,
+						"buffer_size": 1193,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								23,
-								23
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -639,18 +618,18 @@
 				},
 				{
 					"buffer": 2,
-					"file": "app/scripts/directives/pageViewDirective.js",
+					"file": "app/scripts/controllers/weeknessViewCtrl.js",
 					"settings":
 					{
-						"buffer_size": 457,
+						"buffer_size": 2951,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								359,
-								359
+								29,
+								153
 							]
 						],
 						"settings":
@@ -667,46 +646,72 @@
 				},
 				{
 					"buffer": 3,
-					"file": "app/index.html",
+					"file": "app/views/faker.html",
 					"settings":
 					{
-						"buffer_size": 10742,
+						"buffer_size": 1448,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								9700,
-								9700
+								655,
+								655
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 420.0,
+						"translation.y": 83.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "app/scripts/controllers/weeknessViewCtrl.js",
+					"file": "app/scripts/controllers/fakerCtrl.js",
 					"settings":
 					{
-						"buffer_size": 1474,
+						"buffer_size": 3342,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								540,
-								540
+								1069,
+								1069
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/scripts/controllers/didsViewCtrl.js",
+					"settings":
+					{
+						"buffer_size": 954,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								393,
+								393
 							]
 						],
 						"settings":
@@ -716,79 +721,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 138.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/scripts/controllers/sideBarCtrl.js",
-					"settings":
-					{
-						"buffer_size": 840,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								609,
-								609
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 87.0,
+						"translation.y": 99.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 6,
-					"file": "app/scripts/services/navi.js",
+					"file": "app/views/partials/dids.html",
 					"settings":
 					{
-						"buffer_size": 1619,
+						"buffer_size": 1172,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1015,
-								1015
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 644.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "app/views/weeknessForm.html",
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
+								894,
+								894
 							]
 						],
 						"settings":
@@ -803,47 +754,74 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "app/scripts/services/db.js",
+					"buffer": 7,
+					"file": "app/scripts/services/dids.js",
 					"settings":
 					{
-						"buffer_size": 3220,
+						"buffer_size": 1095,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								127,
-								129
+								561,
+								561
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 133.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "app/index.html",
+					"settings":
+					{
+						"buffer_size": 11190,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5264,
+								5266
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 65.0,
+						"translation.y": 1858.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 9,
-					"file": "app/scripts/controllers/didCreateCtrl.js",
+					"file": "app/scripts/controllers/todosViewCtrl.js",
 					"settings":
 					{
-						"buffer_size": 1130,
+						"buffer_size": 119,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								67,
-								67
+								114,
+								114
 							]
 						],
 						"settings":
@@ -859,86 +837,53 @@
 				},
 				{
 					"buffer": 10,
-					"file": "app/scripts/app.js",
+					"file": "app/scripts/services/db.js",
 					"settings":
 					{
-						"buffer_size": 3219,
+						"buffer_size": 3220,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1011,
-								1011
-							],
-							[
-								1195,
-								1195
-							],
-							[
-								1371,
-								1371
+								2892,
+								2815
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 628.0,
+						"translation.y": 404.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 11,
-					"file": "app/views/didForm.html",
+					"file": "app/styles/main.scss",
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 1923,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								126,
+								126
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1473.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "app/scripts/controllers/todoCreateCtrl.js",
-					"settings":
-					{
-						"buffer_size": 1155,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								72,
-								72
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -947,78 +892,24 @@
 					"type": "text"
 				},
 				{
-					"buffer": 13,
-					"file": "app/views/partials/todoForm.html",
+					"buffer": 12,
+					"file": "app/scripts/app.js",
 					"settings":
 					{
-						"buffer_size": 6081,
+						"buffer_size": 3640,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								15,
+								193,
 								15
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 479.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 14,
-					"file": "app/views/partials/didForm.html",
-					"settings":
-					{
-						"buffer_size": 6173,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								14,
-								14
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1416.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 15,
-					"file": "app/views/partials/weeknessForm.html",
-					"settings":
-					{
-						"buffer_size": 705,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								496,
-								496
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,

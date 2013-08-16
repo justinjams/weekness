@@ -5,15 +5,24 @@
   background: #ddd;
 }
 
+#overlay {
+  position: fixed;
+  width: 82%;
+}
+
+#login {
+  position: fixed;
+  right: 50px;
+  z-index: 1;
+}
+
 #browser {
-  overflow: hidden;
   height: 600px;
 }
 
 a {
   cursor: pointer;
 }
-
 
 /* Stuff that was here before I got here */
 html, body {

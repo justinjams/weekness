@@ -12,7 +12,7 @@ angular.module('WeeknessApp')
 		beginnerPiano: {
 			title: 'Beginner Piano',
 			name: 'BeginnerPiano',
-			url: '/weekness/BeginnerPiano',
+			url: '#/weekness/BeginnerPiano',
 			state: 'weekness',
 			params: {
 				weekness: 'BeginnerPiano'
@@ -21,20 +21,20 @@ angular.module('WeeknessApp')
 		beginnerAngularJS: {
 			title: 'Beginner AngularJS',
 			name: 'BeginnerAngularJS',
-			url: '/weekness/BeginnerAngularJS',
+			url: '#/weekness/BeginnerAngularJS',
 			state: 'weekness',
 			params: {
 				weekness: 'BeginnerAngularJS',
 			}
 		},
 		param_test: {
-			title: 'Beginner Piano',
+			title: 'BP Param Test',
 			name: 'BeginnerPiano',
-			url: '/weekness/BeginnerPiano/todo/PlayMapleLeafRag',
+			url: '#/weekness/BeginnerPiano/todo/play-maple-leaf-rag',
 			state: 'weeknessTodos',
 			params: {
 				weekness: 'BeginnerPiano',
-				todo: 'PlayMapleLeafRag'
+				todo: 'play-maple-leaf-rag'
 			}
 		}
 	};
@@ -43,7 +43,7 @@ angular.module('WeeknessApp')
 			createWeekness: {
 				title: 'Create Weekness',
 				name: 'createWeekness',
-				url: '/create/weekness',
+				url: '#/create/weekness',
 				state: 'createWeekness',
 				params: {}
 				}

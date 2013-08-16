@@ -3,12 +3,14 @@
 	<section class="todo">
 		<ul class="nav-list">
 			<li style="display:inline" ng-repeat="shortcut in shortcuts.todo" class="{{ isActive(shortcut.url) }}">
-				<a ng-click="transitionTo(shortcut)">{{ shortcut.title }}</a>
+				<a ng-href="{{shortcut.url}}" >{{ shortcut.title }}</a>
 			</li>
 		</ul>
-		<h3>{{ todo.title }}</h3>
 		<a ng-click="showTodoForm = !showTodoForm">{{ showOrHideTodoForm() }} todo form</a>
 		<div ng-show="showTodoForm" ng-include src="'views/partials/todoForm.html'"></div>
-		{{ params.todo }}
+		<div ng-show="todo">
+			<h3>{{ todo.title }}</h3>
+			<div ng-include src="'views/partials/dids.html'"></div>
+		</div>
 	</section>
-	</div>
+</div>

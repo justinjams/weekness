@@ -10,7 +10,7 @@
     "angular-resource": "~1.0.7",
     "angular-cookies": "~1.0.7",
     "angular-sanitize": "~1.0.7",
-    "ui-router": "~0.0.1",
+    "angular-ui-router": "~0.0.1",
     "isotope": "~1.5.25"
   },
   "devDependencies": {

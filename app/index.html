@@ -24,23 +24,31 @@
       <script src="bower_components/es5-shim/es5-shim.js"></script>
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
-
-    <div class="row-fluid">
-        <div class="span3" id="sideBar">
-            <div class="brand">
-                <h1><a href="#">Weekness</a></h1>
+    <div class="container-fluid" id="overlay">
+        <div class="row-fluid">
+            <div class="span3" id="sideBar">
+                <div class="brand">
+                    <h1><a href="#">Weekness</a></h1>
+                </div>
+                <nav class="sideBarItems" ng-controller="SideBarCtrl">
+                    <ul class="nav nav-list">
+                        <li ng-repeat="subscription in sideBarItems.subscriptions" class="{{ subscription.name }} {{ $parent.isActive(subscription.url) }}"><a ng-click="transitionTo(subscription)">{{ subscription.title }}</a></li>
+                        <li ng-repeat="category in sideBarItems.categories" class="{{ category.name }} {{ $parent.isActive(category.url) }}"><a ng-click="transitionTo(category)">{{ category.title }}</a></li>
+                        <li ng-repeat="menuItem in sideBarItems.menu" class="{{ menuItem.name }} {{ $parent.isActive(menuItem.url) }}"><a href="{{ menuItem.url }}">{{ menuItem.title }}</a></li>
+                    </ul>
+                </nav>
+                <br><a href="#/faker">Fake some content!</a>
             </div>
-            <nav class="sideBarItems" ng-controller="SideBarCtrl">
-                <ul class="nav nav-list">
-                    <li ng-repeat="subscription in sideBarItems.subscriptions" class="{{ subscription.name }} {{ $parent.isActive(subscription.url) }}"><a ng-click="transitionTo(subscription)">{{ subscription.title }}</a></li>
-                    <li ng-repeat="category in sideBarItems.categories" class="{{ category.name }} {{ $parent.isActive(category.url) }}"><a ng-click="transitionTo(category)">{{ category.title }}</a></li>
-                    <li ng-repeat="menuItem in sideBarItems.menu" class="{{ menuItem.name }} {{ $parent.isActive(menuItem.url) }}"><a ng-click="transitionTo(menuItem)">{{ menuItem.title }}</a></li>
-                </ul>
-            </nav>
-            <br><a href="#/faker">Fake some content!</a>
+            <div class="span9">
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span3">
+            &nbsp;
         </div>
         <div class="span9" id="browser">
-            <div ng-controller="LoginCtrl" class="btn-group">
+            <div ng-controller="LoginCtrl" id="login" class="btn-group">
                 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i>{{ login_or_first_name }} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li>
@@ -125,6 +133,7 @@
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
         <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
         <script src="bower_components/ui-router/release/angular-ui-router.min.js"></script>
+        <script src="bower_components/ng-infinite-scroller/build/ng-infinite-scroll.js"></script>
         <script src="bower_components/underscore/underscore-min.js"></script>
         <script src="scripts/vendor/http-auth-interceptor.js"></script>
         <script src="scripts/vendor/underscore.js"></script>
@@ -162,8 +171,9 @@
 
         <script src="scripts/controllers/angularIsotopeCtrl.js"></script>
         <script src="scripts/controllers/didCreateCtrl.js"></script>
+        <script src="scripts/controllers/didsViewCtrl.js"></script>
         <script src="scripts/controllers/todoCreateCtrl.js"></script>
-        <script src="scripts/controllers/debugCtrl.js"></script>
+        <script src="scripts/controllers/todosViewCtrl.js"></script>
         <script src="scripts/controllers/fakerCtrl.js"></script>
         <script src="scripts/controllers/fileUploadCtrl.js"></script>
         <script src="scripts/controllers/fileDestroyCtrl.js"></script>
@@ -181,3 +191,4 @@
         <!-- endbuild -->
 </body>
 </html>
+

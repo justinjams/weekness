@@ -7,6 +7,7 @@ angular.module('WeeknessApp')
 			'title',
 			'body',
 			'weekness',
+			'todo',
 			'artifactType',
 			'artifact'
 		];
@@ -21,7 +22,8 @@ angular.module('WeeknessApp')
 		return {
 			error: $error,
 			get: function (conditions, callback) {
-				db.Did.query(conditions, {}, function(matches) {
+				//console.log(conditions);
+				db.Did.query(conditions, function(matches) {
 					//console.log(matches);
 					callback(matches);
 				});
@@ -33,7 +35,7 @@ angular.module('WeeknessApp')
 				did.created = time;
 				did.updated = time;
 				did.owner = user.get()._id;
-				db.did.save(did, {}, function(e){
+				db.Did.save(did, {}, function(e){
 					console.log(e);
 					console.log('Created did: '+did.title);
 					$rootScope.$broadcast('diddone');

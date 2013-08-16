@@ -1,13 +1,68 @@
 'use strict';
 
 angular.module('WeeknessApp')
-.controller('FakerCtrl', function ($scope, $rootScope, _) {
+.controller('FakerCtrl', function ($scope, $rootScope, _, api) {
 
-	$scope.fakeCount = 0;
+
+	$scope.fakin = { count: 0};
 
 	var random = function(possible) {
 		return possible[Math.floor(Math.random()*possible.length)];
 	};
+
+	$scope.types = [
+		{
+			name: 'todos',
+			showField: function() {
+				if(!$scope.fakin.weekness)
+					return 'weekness';
+				return 'todo';
+			}
+		},
+		{
+			name: 'dids',
+			showField: function() {
+				if(!$scope.fakin.weekness)
+					return 'weekness';
+				if(!$scope.fakin.todo)
+					return 'todo';
+				return 'did';
+			},
+			faker: function() {
+				$scope.$on('diddone', function() {
+					if( --$scope.fakin.count > 0 ) {
+						$scope.fakin.type.fake();
+					} else {
+						$scope.contrib = _.pick($scope.did, ['artifactType']);
+						$scope.processing = false;
+					}
+				});
+
+				$scope.fakin.type.fake();
+			},
+			fake: function() {
+				$scope.processing = true;
+				$scope.did = {
+					title: generator.title(),
+					body: generator.body(),
+					weekness: $scope.fakin.weekness.name,
+					todo: $scope.fakin.todo.slug,
+					artifactType: 'image',
+					artifact: generator.artifact()
+				};
+				api.dids.create($scope.did);
+			}
+		}
+	];
+
+	api.weeknesses.get({}, function(results) {
+		$scope.weeknesses = results;
+	});
+$scope.getTodos = function() {
+	api.todos.get({weekness: $scope.fakin.weekness.slug}, function(results) {
+		$scope.todos = results;
+	});
+}
 
 	var generator = {};
 	
@@ -35,11 +90,6 @@ angular.module('WeeknessApp')
 		return random(possible);
 	};
 
-	$scope.contrib.artifactType = 'image';
-
-	$scope.$watch('flags.artifactUploaded', function() {
-		$scope.flags.artifactUploaded = true;
-	});
 
 	$scope.fake = function() {
 		$scope.processing = true;
@@ -49,6 +99,10 @@ angular.module('WeeknessApp')
 		$scope.contrib.artifact = generator.artifact();
 		$scope.actions.submit();
 	};
+
+	$scope.$watch('flags.artifactUploaded', function() {
+		//$scope.flags.artifactUploaded = true;
+	});
 
 	$scope.$on('contribdone', function() {
 		if( --$scope.fakeCount > 0 ) {

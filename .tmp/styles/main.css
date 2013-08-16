@@ -6810,30 +6810,42 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
 }
 
 /* line 8, ../../app/styles/main.scss */
-#browser {
-  overflow: hidden;
-  height: 600px;
+#overlay {
+  position: fixed;
+  width: 82%;
 }
 
 /* line 13, ../../app/styles/main.scss */
+#login {
+  position: fixed;
+  right: 50px;
+  z-index: 1;
+}
+
+/* line 19, ../../app/styles/main.scss */
+#browser {
+  height: 600px;
+}
+
+/* line 23, ../../app/styles/main.scss */
 a {
   cursor: pointer;
 }
 
 /* Stuff that was here before I got here */
-/* line 19, ../../app/styles/main.scss */
+/* line 28, ../../app/styles/main.scss */
 html, body {
   margin: 20px;
 }
 
-/* line 23, ../../app/styles/main.scss */
+/* line 32, ../../app/styles/main.scss */
 body {
   background: #fafafa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
 }
 
-/* line 29, ../../app/styles/main.scss */
+/* line 38, ../../app/styles/main.scss */
 .hero-unit {
   margin: 50px auto 0 auto;
   width: 300px;
@@ -6845,7 +6857,7 @@ body {
   padding: 60px;
 }
 
-/* line 40, ../../app/styles/main.scss */
+/* line 49, ../../app/styles/main.scss */
 .hero-unit h1 {
   font-size: 60px;
   line-height: 1;
@@ -6853,7 +6865,7 @@ body {
 }
 
 /* Isotope CSS */
-/* line 48, ../../app/styles/main.scss */
+/* line 57, ../../app/styles/main.scss */
 .isotope,
 .isotope .isotope-item {
   /* change duration value to whatever you like */
@@ -6864,7 +6876,7 @@ body {
   transition-duration: 0.8s;
 }
 
-/* line 57, ../../app/styles/main.scss */
+/* line 66, ../../app/styles/main.scss */
 .isotope {
   -webkit-transition-property: height, width;
   -moz-transition-property: height, width;
@@ -6873,7 +6885,7 @@ body {
   transition-property: height, width;
 }
 
-/* line 65, ../../app/styles/main.scss */
+/* line 74, ../../app/styles/main.scss */
 .isotope .isotope-item {
   -webkit-transition-property: -webkit-transform, opacity;
   -moz-transition-property: -moz-transform, opacity;
@@ -6883,7 +6895,7 @@ body {
 }
 
 /**** disabling Isotope CSS3 transitions ****/
-/* line 77, ../../app/styles/main.scss */
+/* line 86, ../../app/styles/main.scss */
 .isotope.no-transition,
 .isotope.no-transition .isotope-item,
 .isotope .isotope-item.no-transition {

@@ -16,9 +16,26 @@ angular.module('WeeknessApp')
       api.getCurrentTodo($scope.weekness, function(todo) {
         $scope.currentTodo = _.clone(todo);
         $scope.params.todo = $scope.params.todo || $scope.currentTodo.slug;
-        console.log($scope.currentTodo);
+        if($state.current.name === 'weekness' && !$stateParams.todo) {
+          $stateParams.todo = $scope.currentTodo.slug;
+          $state.transitionTo('weeknessTodos', $stateParams);
+          ///$scope.$apply();
+        }
       });
     });
+
+    if($stateParams.todo) {
+      api.todos.get({slug: $stateParams.todo}, function(results) {
+        if(!results.length) {
+          $state.transitionTo('weekness', _.pick($stateParams, 'weekness'));
+        }
+        else {
+          $scope.todo = _.clone(results[0]);
+        }
+        // $scope.currentTodo = _.clone(todo);
+        // $scope.params.todo = $scope.params.todo || $scope.currentTodo.slug;
+      });
+    }
     // api.todos.get({weekness: $scope.params.weekness, limit: 1, sort: "expires", order:"desc" }, function(results) {
     //   console.log(results);
     // });
@@ -27,7 +44,7 @@ angular.module('WeeknessApp')
       todo: [
         {
           title: 'Nexts',
-          url: '/weekness/'+$scope.params.weekness+'/nexts',
+          url: '#/weekness/'+$scope.params.weekness+'/nexts',
           state: 'weeknessNexts',
           params: {
             weekness: $scope.params.weekness
@@ -35,7 +52,7 @@ angular.module('WeeknessApp')
         },
         {
           title: 'Current',
-          url: '/weekness/'+$scope.params.weekness+'/'+$scope.currentTodo.slug,
+          url: '#/weekness/'+$scope.params.weekness,
           state: 'weekness',
           params: {
             weekness: $scope.params.weekness,
@@ -43,7 +60,7 @@ angular.module('WeeknessApp')
         },
         {
           title: 'Top',
-          url: '/weekness/'+$scope.params.weekness+'/top',
+          url: '#/weekness/'+$scope.params.weekness+'/top',
           state: 'weeknessTop',
           params: {
             weekness: $scope.params.weekness
@@ -51,7 +68,7 @@ angular.module('WeeknessApp')
         },
         {
           title: 'History',
-          url: '/weekness/'+$scope.params.weekness+'/history',
+          url: '#/weekness/'+$scope.params.weekness+'/history',
           state: 'weeknessHistory',
           params: {
             weekness: $scope.params.weekness
@@ -74,34 +91,8 @@ angular.module('WeeknessApp')
       // console.log(item);
     }
     $scope.isActive = function(url) {
-      if($location.$$url.indexOf(url) !== -1) {
+      if($location.$$url.indexOf(url.replace('#', '')) !== -1) {
         return 'active';
       }
     }
-
-    $scope.$on('isotope.onLayout', function() {
-      var visible = $('.kindling:not(".isotope-hidden")').length;
-      console.log(visible);
-      if( visible >= baseLimit ){
-        return;
-      }
-      refill();
-    });
-
-    var refill = function() {
-      if($.isEmptyObject($scope.params)) 
-        return;
-      api.dids.get($scope.params, function(results){
-        lastRefill = results.length;
-        $.each(results, function() {
-          if(this.artifact === '[object Object]') {
-            console.err('artifact object was not deserialized');
-            return;
-          }
-          this.artifact = $.parseJSON(this.artifact);
-        });
-        $scope.dids = _.union($scope.dids, results);
-      });
-    };
-    refill();
   });

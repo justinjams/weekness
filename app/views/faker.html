@@ -1,104 +1,35 @@
-<div class="hero-unit">
-	<div ng-controller="FakerCtrl">
-		<form>
-			<h2>How many phonies?</h2>
-			<input type="text" ng-model="fakeCount"></input>
-			<input type="submit" class="btn" ng-click="fake()" ng-disabled="processing || fakeCount<1" value="FAKE N BAKE" />
-		</form>
+<div ng-controller="FakerCtrl">
+	<form>
+		<h2>How many phonies?</h2>
+		<input type="text" ng-model="fakin.count"></input>
+		<select ng-model="fakin.type" ng-options="type.name for type in types"></select>
+		<input type="submit" class="btn" ng-click="fakin.type.faker()" ng-disabled="processing || fakin.count<1" value="FAKE N BAKE" />
+	</form>
 <!-- pasted contribution form -->
-  		<form name="form">
-			<label for="title">Title:</label> <input required type="textarea" ng-model="contrib.title" /><br />
-			<label for="body">Body:</label> <input required type="text" ng-model="contrib.body" name="body" /><br />
-			<label for="weekness">Weakness:</label> <input required type="text" ng-model="contrib.weekness" /><br />
-			<label for="type">Type:</label> <select name="type" ng-model="contrib.artifactType">
-				<option value="" disabled selected>Choose upload type</option>
-				<option ng-repeat="type in artifactTypes">{{ type }}</option>
-			</select><br />
-        <!-- <input class="btn" type="submit" id="submit" value="Submit" ng-click="submit()"/> -->
-		<div ng-switch on="contrib.artifactType">
-			<div ng-switch-when="image">
-				<link rel="stylesheet" href="/bower_components/blueimp-file-upload/css/jquery.fileupload-ui.css">
-				<!-- CSS adjustments for browsers with JavaScript disabled -->
-				<noscript><link rel="stylesheet" href="/bower_components/blueimp-file-upload/css/jquery.fileupload-ui-noscript.css"></noscript>
-				<div ng-form="fileupload" id="fileupload" name="fileupload" action="http://localhost:8888" method="POST" enctype="multipart/form-data"data-ng-controller="FileUploadCtrl" data-file-upload="options" data-ng-app="WeeknessApp" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
-				    <!-- Redirect browsers with JavaScript disabled to the origin page -->
-				    <noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>
-				    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-				    <div class="row fileupload-buttonbar">
-				        <div class="span5">
-				            <!-- The fileinput-button span is used to style the file input field as button -->
-				            <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
-				                <i class="icon-plus icon-white"></i>
-				                <span>Add files...</span>
-				                <input type="file" name="files[]" ng-disabled="disabled" >
-				            </span>
-				            <button type="button" class="btn btn-primary start" data-ng-click="submit()">
-				                <i class="icon-upload icon-white"></i>
-				                <span>Start upload</span>
-				            </button>
-				            <button type="button" class="btn btn-warning cancel" data-ng-click="cancel()">
-				                <i class="icon-ban-circle icon-white"></i>
-				                <span>Cancel upload</span>
-				            </button>
-				            <!-- The loading indicator is shown during file processing -->
-				            <div class="fileupload-loading"></div>
-				        </div>
-				        <!-- The global progress information -->
-				        <div class="span5 fade" data-ng-class="{in: active()}">
-				            <!-- The global progress bar -->
-				            <div class="progress progress-success progress-striped active" data-file-upload-progress="progress()"><div class="bar" data-ng-style="{width: num + '%'}"></div></div>
-				            <!-- The extended global progress information -->
-				            <div class="progress-extended">&nbsp;</div>
-				        </div>
-				    </div>
-				    <!-- The table listing the files available for upload/download -->
-				    <table class="table table-striped files ng-cloak">
-				        <tr data-ng-repeat="file in queue">
-				            <td data-ng-switch data-on="!!file.thumbnail_url">
-				                <div class="preview" data-ng-switch-when="true">
-				                    <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery><img data-ng-src="{{file.thumbnail_url}}" alt=""></a>
-				                </div>
-				                <div class="preview" data-ng-switch-default data-file-upload-preview="file"></div>
-				            </td>
-				            <td>
-				                <p class="name" data-ng-switch data-on="!!file.url">
-				                    <span data-ng-switch-when="true" data-ng-switch data-on="!!file.thumbnail_url">
-				                        <a data-ng-switch-when="true" data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery>{{file.name}}</a>
-				                        <a data-ng-switch-default data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}">{{file.name}}</a>
-				                    </span>
-				                    <span data-ng-switch-default>{{file.name}}</span>
-				                </p>
-				                <div data-ng-show="file.error"><span class="label label-important">Error</span> {{file.error}}</div>
-				            </td>
-				            <td>
-				                <p class="size">{{file.size | formatFileSize}}</p>
-				                <div class="progress progress-success progress-striped active fade" data-ng-class="{pending: 'in'}[file.$state()]" data-file-upload-progress="file.$progress()"><div class="bar" data-ng-style="{width: num + '%'}"></div></div>
-				            </td>
-				            <td>
-				                <button type="button" class="btn btn-primary start" data-ng-click="file.$submit()" data-ng-hide="!file.$submit">
-				                    <i class="icon-upload icon-white"></i>
-				                    <span>Start</span>
-				                </button>
-				                <button type="button" class="btn btn-warning cancel" data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
-				                    <i class="icon-ban-circle icon-white"></i>
-				                    <span>Cancel</span>
-				                </button>
-				                <button data-ng-controller="FileDestroyCtrl" type="button" class="btn btn-danger destroy" data-ng-click="file.$destroy()" data-ng-hide="!file.$destroy">
-				                    <i class="icon-ban-circle icon-white"></i>
-				                    <span>Delete</span>
-				                </button>
-				            </td>
-				        </tr>
-				    </table>
+{{ weekness }}
+<div ng-switch="fakin.type.name">
+	<div ng-switch-when="todos">
+			<div ng-switch="fakin.type.showField()">
+				<div ng-switch-when="weekness">
+					Select a weekness: <select ng-model="fakin.weekness" ng-options="weekness.name for weekness in weeknesses"></select>
 				</div>
+ 			<div ng-switch-when="todo" ng-include src="'views/partials/todoForm.html'"></div>
+ 			<div ng-switch-default>Tell me more...</div>
 			</div>
-			<div ng-switch-default>
-				No way to upload that!
+ 	</div>
+	<div ng-switch-when="dids">
+			<div ng-switch="fakin.type.showField()">
+				<div ng-switch-when="weekness">
+					Select a weekness: <select ng-model="fakin.weekness" ng-change="getTodos()" ng-options="weekness.name for weekness in weeknesses"></select>
+				</div>
+				<div ng-switch-when="todo">
+					Select a todo: <select ng-model="fakin.todo" ng-options="todo.title for todo in todos"></select>
+				</div>
+				<div ng-switch-when="did" ng-include src="'views/partials/didForm.html'"></div>
+ 			<div ng-switch-default>Tell me more...</div>
 			</div>
-		</div>
-		<input ng-model="flags.artifactUploaded" contrib-artifact hidden \><br />
-		<input type="submit" class="btn" ng-click="actions.submit()" ng-disabled="!form.$valid" value="Submit" />
-		</form>
-<!-- pasted contribution form -->
+ 	</div>
+	<div ng-switch-default>
+		WHATCHA GONNA FAKE?
 	</div>
 </div>

@@ -24,7 +24,10 @@ angular.module('WeeknessApp')
         .replace(/[^\w-]+/g,'');
 			},
 			getWeekness: function() {
-				return $location.$$url.match(/\/weekness\/([_0-9a-zA-Z]*)[^\/]*/)[1];
+				if($location.$$url.indexOf('/weekness/') !== -1)
+					return $location.$$url.match(/\/weekness\/([_0-9a-zA-Z]*)[^\/]*/)[1];
+				else
+					return '';
 			},
 			urlToParams: function(url) {
 				var tokens = url.split('/'),

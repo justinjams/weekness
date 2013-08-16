@@ -7,6 +7,7 @@ angular.module('WeeknessApp')
 		title: '',
 		body: '',
 		weekness: '',
+		todo: '',
 		artifactType: '',
 		artifact: ''
 	};
@@ -14,11 +15,9 @@ angular.module('WeeknessApp')
 	$scope.flags = {
 		artifactUploaded: false
 	};
-	$scope.actions = {
-		submit: function() {
+	$scope.submit = function() {
 			//results(content, completed);
 			api.dids.create($scope.did);
-		}
 	};
 
 	// watch for file upload from jquery.fileupload-angular.js

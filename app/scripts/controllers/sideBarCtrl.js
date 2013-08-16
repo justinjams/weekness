@@ -8,7 +8,6 @@ angular.module('WeeknessApp')
 			$scope.sideBarItems = navi.sideBarItems;
 		}, true);
 
-	console.log($scope.sideBarItems);
 	$scope.select = function(selectedItem) {
 		$.each($scope.sideBarItems, function() {
 			this.active = null; 
@@ -30,7 +29,7 @@ angular.module('WeeknessApp')
 		// console.log(item);
 	}
 	$scope.isActive = function(url) {
-		if($location.$$url.indexOf(url) !== -1) {
+		if($location.$$url.indexOf(url.replace('#', '')) !== -1) {
 			return 'active';
 		}
 	}

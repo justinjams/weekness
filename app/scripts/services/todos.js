@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('WeeknessApp')
-  .service('todos', function todos($rootScope, db, user, _) {
+  .service('todos', function todos($rootScope, $stateParams, db, user, _) {
+  	console.log($stateParams);
 		var $error = '';
 		var $fields = [
 			'title',
