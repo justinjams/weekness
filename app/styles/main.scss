@@ -10,6 +10,11 @@
   width: 82%;
 }
 
+#spotlight {
+  z-index: 1;
+  position: relative;
+}
+
 #login {
   position: fixed;
   right: 50px;

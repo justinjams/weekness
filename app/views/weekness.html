@@ -13,4 +13,9 @@
 			<div ng-include src="'views/partials/dids.html'"></div>
 		</div>
 	</section>
+	<section class="todos" ng-show="todos">
+				<div ng-show="todos">
+			<h3>{{ todo.title }}</h3>
+			<div ng-include src="'views/partials/todos.html'"></div>
+	</section>
 </div>

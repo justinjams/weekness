@@ -47,7 +47,7 @@ angular.module('WeeknessApp')
           url: '#/weekness/'+$scope.params.weekness+'/nexts',
           state: 'weeknessNexts',
           params: {
-            weekness: $scope.params.weekness
+            weekness: $scope.params.weekness,
           }
         },
         {
