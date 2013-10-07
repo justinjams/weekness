@@ -2,7 +2,6 @@
 
 angular.module('WeeknessApp')
   .service('todos', function todos($rootScope, $stateParams, db, user, _) {
-  	console.log($stateParams);
 		var $error = '';
 		var $fields = [
 			'title',
@@ -10,7 +9,8 @@ angular.module('WeeknessApp')
 			'body',
 			'weekness',
 			'artifactType',
-			'artifact'
+			'artifact',
+			'generation'
 		];
 	/*
 		title		- text
@@ -24,8 +24,14 @@ angular.module('WeeknessApp')
 			error: $error,
 			get: function (conditions, callback) {
 				db.Todo.query(conditions, {}, function(matches) {
-					//console.log(matches);
+					console.log(conditions);
+					console.log(matches);
 					callback(matches);
+				});
+			},
+			find: function(conditions, callback) {
+				db.Todo.$find(conditions, {}, function(matches) {
+					console.log(matches);
 				});
 			},
 			create: function(todo) {

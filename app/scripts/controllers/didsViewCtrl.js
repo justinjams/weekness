@@ -21,7 +21,7 @@ angular.module('WeeknessApp')
     if($.isEmptyObject($scope.params)) 
       return;
     api.dids.get($scope.params, function(results){
-    	 console.log(results);
+    	console.log(results);
       lastRefill = results.length;
       $.each(results, function() {
         if(this.artifact === '[object Object]') {

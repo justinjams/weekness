@@ -23,7 +23,7 @@ angular.module('WeeknessApp')
         }
       });
     });
-
+    console.log($stateParams);
     if($stateParams.todo) {
       api.todos.get({slug: $stateParams.todo}, function(results) {
         if(!results.length) {
@@ -36,6 +36,10 @@ angular.module('WeeknessApp')
         // $scope.params.todo = $scope.params.todo || $scope.currentTodo.slug;
       });
     }
+
+    if($stateParams.todos) {
+      $scope.showTodos = true;
+    }
     // api.todos.get({weekness: $scope.params.weekness, limit: 1, sort: "expires", order:"desc" }, function(results) {
     //   console.log(results);
     // });
@@ -44,7 +48,7 @@ angular.module('WeeknessApp')
       todo: [
         {
           title: 'Nexts',
-          url: '#/weekness/'+$scope.params.weekness+'/nexts',
+          url: '#/weekness/'+$scope.params.weekness+'/todos/nexts',
           state: 'weeknessNexts',
           params: {
             weekness: $scope.params.weekness,

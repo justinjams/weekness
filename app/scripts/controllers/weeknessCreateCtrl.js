@@ -6,7 +6,8 @@ angular.module('WeeknessApp')
 	$scope.weekness = {
 		title: '',
 		description: '',
-		category: ''
+		category: '',
+		generation: 0,
 	};
 	$scope.categories = api.categories.get();
 

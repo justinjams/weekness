@@ -102,16 +102,7 @@ var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-in
 			}
 		})
 		.state('weeknessHistory', {
-			url: '/weekness/:weekness/todos/history',
-			views: {
-				'content': {
-					templateUrl: 'views/weekness.html',
-					controller: 'WeeknessViewCtrl'
-				}
-			}
-		})
-		.state('weeknessNexts', {
-			url: '/weekness/:weekness/todos/nexts',
+			url: '/weekness/:weekness/todos/:todos',
 			views: {
 				'content': {
 					templateUrl: 'views/weekness.html',

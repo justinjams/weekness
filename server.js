@@ -461,6 +461,7 @@ app.get('/api/:collection', function(req, res) {
         }
     }
     if (req.query.sort) { sort[req.query.sort] = (req.query.order === 'desc' || req.query.order === -1) ? -1 : 1; }
+    console.log(req.query);
     db.collection(req.params.collection).find(qw).sort(sort).skip(req.query.skip).limit(req.query.limit).toArray(fn(req, res))
 });
 
@@ -484,7 +485,8 @@ app.del('/api/:collection/:id', function(req, res) {
 //Group
 app.put('/api/:collection/group', function(req, res) {
     db.collection(req.params.collection).group(req.body, fn(req, res))
-})
+});
+
 
 // MapReduce
 app.put('/api/:collection/mapReduce', function(req, res) {
@@ -492,13 +494,13 @@ app.put('/api/:collection/mapReduce', function(req, res) {
     req.body.options.out = { inline : 1};
     req.body.options.verbose = false;
     db.collection(req.params.collection).mapReduce(req.body.map, req.body.reduce, req.body.options, fn(req, res));    
-})
+});
 
 // Command (count, distinct, find, aggregate)
 app.put('/api/:collection/:cmd',  function (req, res) {
     if (req.params.cmd === 'distinct') {req.body = req.body.key}
     db.collection(req.params.collection)[req.params.cmd](req.body, fn(req, res)); 
-})
+});
   app.use.apply(app, arguments);
 };
 

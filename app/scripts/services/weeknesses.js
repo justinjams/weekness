@@ -8,7 +8,8 @@ angular.module('WeeknessApp')
 			'title',
 			'description',
 			'categoryId',
-			'artifactType'
+			'artifactType',
+			'generation'
 		];
 		var artifactTypes = [
 			'image',
