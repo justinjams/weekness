@@ -24,6 +24,9 @@ angular.module('WeeknessApp')
         break;
     }
 
+  $scope.$on('todos:created', function(e) {
+    $scope.showTodoForm = false;
+  });
     api.weeknesses.get({name: $scope.params.weekness}, function(results) {
       $scope.weekness = results[0];
       api.getCurrentTodo($scope.weekness, function(todo) {

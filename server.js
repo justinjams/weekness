@@ -70,12 +70,9 @@ everyauth.everymodule.userPkey('_id');
 everyauth.
     everymodule.
     findUserById(function (id, callback) {
-        console.log("Looking up: "+id);
         db.collection('users').findOne({
             _id: db.ObjectId(id)
         }, function(err, user) {
-            console.log(err);
-            console.log(user);
             //user.id = user._id;
             if(!err) {
                 user = _.pick(user, [
@@ -409,36 +406,55 @@ app.get('/user', function(req, res) {
 });
 
 app.post('/vote', function(req, res) {
-    console.log(req.body);
-    console.log(req.user);
+    if(!req.user) {
+        return;
+    }
+
     var todo = req.body.todo;
     delete req.body.todo;
     var params = req.body;
     params.user = req.user._id;
 
-    db.collection('votes').find(params, function(err, vote) {
+    db.collection('votes').find(params, function(err, votes) {
         if(!err) {
-            if(!vote.length) {
+            if(!votes.length) {
                 params.todo = todo;
-                db.collection('votes').save(params, {}, function(err, vote) {
-                    console.log('Saved vote');
-                    console.log(vote);
+                db.collection('votes').save(params, {}, function(err, votes) {
+                    changeVote(todo, 1);
+                    console.log(votes[0].user+' voted for '+todo);
                 });
+            } else if(votes[0].todo === todo) {
+                console.log('revote discarded: '+votes[0].user+' voted for '+todo);
             } else {
+                changeVote(votes[0].todo, -1);
+                changeVote(todo, 1);
                 db.collection('votes').findAndModify(
                     {
                         query: params,
                         update: { $set: { todo: todo } },
-                        new: true
-                    }, function(err, vote) {
-                    console.log('Updated vote');
-                    console.log(vote);
-                });
+                    }, function(err) {
+                        if(!err) {
+                            console.log(req.user._id+' voted for '+todo);
+                        }
+                    });
             }
         }
     });
     //db.collection('todovotes')
 });
+
+function changeVote(todo, val) {
+    db.collection('todos').findAndModify(
+    {
+        query: { slug: todo },
+        update: { $inc: { votes: val }},
+        new: true
+    }, function (err, todo) {
+        if(!err) {
+            console.log('changeVote('+todo.slug+','+val+') ==> '+todo.votes);
+        }
+    });
+}
 
 app.post('/available', function(req, res) {
     //console.log(req.body);

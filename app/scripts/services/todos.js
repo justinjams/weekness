@@ -10,7 +10,8 @@ angular.module('WeeknessApp')
 			'weekness',
 			'artifactType',
 			'artifact',
-			'generation'
+			'generation',
+			'votes'
 		];
 	/*
 		title		- text
@@ -28,17 +29,18 @@ angular.module('WeeknessApp')
 					callback(matches);
 				});
 			},
-			create: function(todo) {
+			create: function(todo, callback) {
 				todo = _.pick(todo, $fields);
 				//todo.artifact = JSON.stringify(todo.artifact);
 				var time = new Date().getTime();
 				todo.created = time;
 				todo.updated = time;
 				todo.owner = user.get()._id;
-				db.Todo.save(todo, {}, function(e){
-					console.log(e);
-					console.log('Created todo: '+todo.title);
-					$rootScope.$broadcast('tododone');
+				db.Todo.save(todo, {}, function(err){
+					if(!err) {
+						if(callback) callback();
+						$rootScope.$broadcast('todos:created');
+					}
 				});
 			}
 		};

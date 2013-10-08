@@ -2,6 +2,7 @@
 
 angular.module('WeeknessApp')
 .controller('TodoViewCtrl', function ($rootScope, $scope, $stateParams, api, _) {
+	$scope.sort = 'votes';
 
 	$scope.update = function() {
 		api.todos.get($scope.params, function(results) {
