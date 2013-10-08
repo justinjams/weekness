@@ -11,14 +11,28 @@ angular.module('WeeknessApp')
       limit: baseLimit
     });
     $scope.currentTodo = {};
+    console.log($state.current.name);
+    switch($state.current.name) {
+      case 'weeknessTodo':
+        $scope.showTodo = true;
+        break;
+      case 'weeknessTodos':
+        $scope.showTodos = true;
+        break;
+      case 'weeknessTodoDids':
+        $scope.showDids = true;
+        break;
+    }
+
     api.weeknesses.get({name: $scope.params.weekness}, function(results) {
       $scope.weekness = results[0];
       api.getCurrentTodo($scope.weekness, function(todo) {
         $scope.currentTodo = _.clone(todo);
         $scope.params.todo = $scope.params.todo || $scope.currentTodo.slug;
+        console.log($stateParams);
         if($state.current.name === 'weekness' && !$stateParams.todo) {
           $stateParams.todo = $scope.currentTodo.slug;
-          $state.transitionTo('weeknessTodos', $stateParams);
+          $state.transitionTo('weeknessTodoDids', $stateParams);
           ///$scope.$apply();
         }
       });
@@ -35,10 +49,6 @@ angular.module('WeeknessApp')
         // $scope.currentTodo = _.clone(todo);
         // $scope.params.todo = $scope.params.todo || $scope.currentTodo.slug;
       });
-    }
-
-    if($stateParams.todos) {
-      $scope.showTodos = true;
     }
     // api.todos.get({weekness: $scope.params.weekness, limit: 1, sort: "expires", order:"desc" }, function(results) {
     //   console.log(results);

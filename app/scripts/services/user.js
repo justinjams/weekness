@@ -109,6 +109,13 @@ angular.module('WeeknessApp')
 				// or server returns response with an error status.
 			});
 		},
+		addVote: function(voteInfo) {
+			$http({method:'POST', url: '/vote', data: voteInfo}).
+			success(function(data, status, headers, config) {
+				console.log(status);
+				console.log(data);
+			});
+		},
 		logout: function() {
 			current = null;
 

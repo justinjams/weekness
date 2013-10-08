@@ -1,3 +1,7 @@
-<div class="row-fluid" ng-controller="TodosViewCtrl">
-TodosView Ctrl!
+<div class="row-fluid" ng-controller="TodoViewCtrl">
+<table>
+	<tr ng-repeat="item in todos">
+		<td><a ng-href="/#/weekness/{{weekness.name}}/todo/{{item.slug}}">{{item.title}}</td>
+	</tr>
+</table>
 </div>

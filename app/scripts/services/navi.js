@@ -17,25 +17,6 @@ angular.module('WeeknessApp')
 			params: {
 				weekness: 'BeginnerPiano'
 			}
-		},
-		beginnerAngularJS: {
-			title: 'Beginner AngularJS',
-			name: 'BeginnerAngularJS',
-			url: '#/weekness/BeginnerAngularJS',
-			state: 'weekness',
-			params: {
-				weekness: 'BeginnerAngularJS',
-			}
-		},
-		param_test: {
-			title: 'BP Param Test',
-			name: 'BeginnerPiano',
-			url: '#/weekness/BeginnerPiano/todo/play-maple-leaf-rag',
-			state: 'weeknessTodos',
-			params: {
-				weekness: 'BeginnerPiano',
-				todo: 'play-maple-leaf-rag'
-			}
 		}
 	};
  var sideBarItems = {

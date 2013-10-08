@@ -8,19 +8,24 @@ angular.module('WeeknessApp')
 		body: '',
 		weekness: api.getWeekness(),
 		artifactType: '',
-		artifact: ''
+		artifact: '',
+		slug: '',
+		generation: ''
 	};
+	api.weeknesses.get({name: api.getWeekness()}, function(matches) {
+		var weekness = matches[0];
+		//_.extend($scope.todo, _pick(weekness, ['generation']);
+		$scope.todo.generation = ''+(parseInt(weekness.generation, 10)+1);
+	});
 	$scope.artifactTypes = ['image', 'none'];
 	$scope.flags = {
 		artifactUploaded: false
 	};
 	$scope.submit = function() {
 			//results(content, completed);
-			$scope.todo.slug = api.slugify($scope.todo.title);
+			$scope.todo.slug = api.slugify($scope.todo.title, 'todo:title');
 			api.todos.create($scope.todo);
 	};
-
-
 
 	// watch for file upload from jquery.fileupload-angular.js
 	// and update value, which will be be validated by todo-artifact

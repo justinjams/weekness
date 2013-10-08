@@ -169,6 +169,7 @@ everyauth
                 errors.push(err.message || err);
                 return promise.fulfill(errors);
             }
+            console.log(user);
             bcrypt.compare(password, user.hash, function (err, didSucceed) {
                 if (err) {
                   return promise.fail(err);
@@ -407,6 +408,38 @@ app.get('/user', function(req, res) {
     }
 });
 
+app.post('/vote', function(req, res) {
+    console.log(req.body);
+    console.log(req.user);
+    var todo = req.body.todo;
+    delete req.body.todo;
+    var params = req.body;
+    params.user = req.user._id;
+
+    db.collection('votes').find(params, function(err, vote) {
+        if(!err) {
+            if(!vote.length) {
+                params.todo = todo;
+                db.collection('votes').save(params, {}, function(err, vote) {
+                    console.log('Saved vote');
+                    console.log(vote);
+                });
+            } else {
+                db.collection('votes').findAndModify(
+                    {
+                        query: params,
+                        update: { $set: { todo: todo } },
+                        new: true
+                    }, function(err, vote) {
+                    console.log('Updated vote');
+                    console.log(vote);
+                });
+            }
+        }
+    });
+    //db.collection('todovotes')
+});
+
 app.post('/available', function(req, res) {
     //console.log(req.body);
     db.collection('users').find(req.body,
@@ -418,34 +451,7 @@ app.post('/available', function(req, res) {
                 else
                     res.send('true');
             }
-        });
-
-    /*db.User.query({
-        username : req.body.username
-    }, {}, function(matches) {
-        console.log(matches);
-        if(matches.length>0 && password) {
-            db.User.query({
-                username : username,
-                password : password
-            }, {}, function(matches) {
-                if(matches.length>0) {
-                    $error = 'correct';
-                    $user = _.clone(matches[0]);
-                    authService.loginConfirmed();
-                } else {
-                    $error = 'invalid';
-                }
-                $rootScope.$broadcast('authentication', $error);
-            });
-        } else if(matches.length === 0) {
-            $error = 'available';
-        } else {
-            $error = 'taken';
-        }
-    });*/
- //       $rootScope.$broadcast('authentication', $error);
- 
+        }); 
 });
 
 
@@ -456,12 +462,11 @@ app.get('/api/:collection', function(req, res) {
         req.query[item] = (typeof +req.query[item] === 'number' && isFinite(req.query[item])) 
             ? parseFloat(req.query[item],10) 
             : req.query[item];
-        if (item != 'limit' && item != 'skip' && item != 'sort' && item != 'order' && req.query[item] != "undefined" && req.query[item]) {
-            qw[item] = req.query[item]; 
+        if (item != 'limit' && item != 'skip' && item != 'sort' && item != 'order' && req.query[item] != "undefined") {
+            qw[item] = ""+req.query[item]; 
         }
     }
     if (req.query.sort) { sort[req.query.sort] = (req.query.order === 'desc' || req.query.order === -1) ? -1 : 1; }
-    console.log(req.query);
     db.collection(req.params.collection).find(qw).sort(sort).skip(req.query.skip).limit(req.query.limit).toArray(fn(req, res))
 });
 

@@ -74,7 +74,7 @@ var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-in
 				}
 			}
 		})
-		.state('weeknessTodos', {
+		.state('weeknessTodo', {
 			url: '/weekness/:weekness/todo/:todo',
 			views: {
 				'content': {
@@ -83,8 +83,17 @@ var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-in
 				}
 			}
 		})
-		.state('weeknessTodosDids', {
-			url: '/weekness/:weekness/todo/:todo/did/:did',
+		.state('weeknessTodos', {
+			url: '/weekness/:weekness/todos/:todos',
+			views: {
+				'content': {
+					templateUrl: 'views/weekness.html',
+					controller: 'WeeknessViewCtrl'
+				}
+			}
+		})
+		.state('weeknessTodoDids', {
+			url: '/weekness/:weekness/dids/:todo',
 			views: {
 				'content': {
 					templateUrl: 'views/weekness.html',
@@ -102,7 +111,7 @@ var app = angular.module('WeeknessApp', ['ui.state', 'underscore', 'http-auth-in
 			}
 		})
 		.state('weeknessHistory', {
-			url: '/weekness/:weekness/todos/:todos',
+			url: '/weekness/:weekness/history',
 			views: {
 				'content': {
 					templateUrl: 'views/weekness.html',

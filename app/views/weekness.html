@@ -1,20 +1,22 @@
 <div ng-show="weekness">
 	<h4>{{ weekness.title }}</h4>
-	<section class="todo">
-		<ul class="nav-list">
-			<li style="display:inline" ng-repeat="shortcut in shortcuts.todo" class="{{ isActive(shortcut.url) }}">
-				<a ng-href="{{shortcut.url}}" >{{ shortcut.title }}</a>
-			</li>
-		</ul>
-		<a ng-click="showTodoForm = !showTodoForm">{{ showOrHideTodoForm() }} todo form</a>
-		<div ng-show="showTodoForm" ng-include src="'views/partials/todoForm.html'"></div>
-		<div ng-show="todo">
-			<h3>{{ todo.title }}</h3>
-			<div ng-include src="'views/partials/dids.html'"></div>
-		</div>
+	<ul class="nav-list">
+		<li style="display:inline" ng-repeat="shortcut in shortcuts.todo" class="{{ isActive(shortcut.url) }}">
+			<a ng-href="{{shortcut.url}}" >{{ shortcut.title }}</a>
+		</li>
+	</ul>
+	<a ng-click="showTodoForm = !showTodoForm">{{ showOrHideTodoForm() }} todo form</a>
+	<div ng-show="showTodoForm" ng-include src="'views/partials/todoForm.html'"></div>
+	<section ng-show="showTodo">
+		<h3>{{ todo.title }}</h3>
+		<div ng-include src="'views/partials/todo.html'"></div>
 	</section>
-	<section class="todos" ng-show="showTodos">
-			<h3>Todos</h3>
-			<div ng-include src="'views/partials/todos.html'"></div>
+	<section ng-show="showDids">
+		<h3>{{ todo.title }}</h3>
+		<div ng-include src="'views/partials/dids.html'"></div>
+	</section>
+	<section ng-show="showTodos">
+		<h3>Todos</h3>
+		<div ng-include src="'views/partials/todos.html'"></div>
 	</section>
 </div>

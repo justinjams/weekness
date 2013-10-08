@@ -24,14 +24,8 @@ angular.module('WeeknessApp')
 			error: $error,
 			get: function (conditions, callback) {
 				db.Todo.query(conditions, {}, function(matches) {
-					console.log(conditions);
 					console.log(matches);
 					callback(matches);
-				});
-			},
-			find: function(conditions, callback) {
-				db.Todo.$find(conditions, {}, function(matches) {
-					console.log(matches);
 				});
 			},
 			create: function(todo) {
