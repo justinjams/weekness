@@ -24,6 +24,7 @@
       <script src="bower_components/es5-shim/es5-shim.js"></script>
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
+    <div ng-include src="'views/smoop.html'"></div>
     <div class="container-fluid" id="overlay">
         <div class="row-fluid">
             <div class="span3" id="sideBar">
@@ -37,7 +38,6 @@
                         <li ng-repeat="menuItem in sideBarItems.menu" class="{{ menuItem.name }} {{ $parent.isActive(menuItem.url) }}"><a href="{{ menuItem.url }}">{{ menuItem.title }}</a></li>
                     </ul>
                 </nav>
-                <br><a href="#/faker">Fake some content!</a>
             </div>
             <div class="span9">
             </div>

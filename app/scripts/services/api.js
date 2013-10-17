@@ -12,7 +12,7 @@ angular.module('WeeknessApp')
 			todos: todos,
 			dids: dids,
 			getCurrentTodo: function(weekness, callback) {
-				db.Todo.query({limit: 1, weekness: weekness.name, sort: 'expires', order: 'desc'}, {}, function(results) {
+				db.Todo.query({limit: 1, weekness: weekness.name, sort: 'expires', order: 'desc'}, {}, function(results) {console.log(results);
 					callback(results[0]);
 				});
 			},

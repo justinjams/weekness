@@ -11,7 +11,8 @@ angular.module('WeeknessApp')
 		artifact: '',
 		slug: '',
 		generation: '',
-		votes: 0
+		votes: 0,
+		duration: 604800000
 	};
 	api.weeknesses.get({name: api.getWeekness()}, function(matches) {
 		var weekness = matches[0];

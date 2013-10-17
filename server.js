@@ -9,7 +9,8 @@ var app = express(),
     jade = require('jade'),
     q = require('q'),
     bcrypt = require('bcrypt'),
-    _ = require('underscore');
+    _ = require('underscore'),
+    cronJob = require('cron').CronJob;
 
 /*
   var UserSchema = new Schema({})
@@ -551,3 +552,52 @@ app.post('/upload', function (req, res) {
 */
 
 exports.express = express;
+
+function theNextGeneration(weeknessName, cb){
+    db.collection('weeknesses').findAndModify({
+        query: { name: weeknessName },
+        update: { $inc: { generation:1 } },
+        new: true }, 
+        function(err, weekness) {
+            console.log(weekness);
+            db.collection('todos').find(
+                { weekness:weekness.name, generation:""+weekness.generation}).sort(
+                    {votes:-1},
+                    function(err, todos) {
+                        if(err || !todos.length) return;
+                        var todo = todos[0];
+                        var expiration = parseInt(todo.duration) + new Date().getTime();
+                        db.collection('todos').update(
+                            {_id: todo._id},
+                            { $set: { expires:expiration, current:todo._id }},
+                            {},
+                            function() {
+                                var message = 'New todo:"'+todo.title+'" for '+weekness.name+'. Expires '+expiration;
+                                var job = new cronJob(new Date(expiration), function(){
+                                    theNextGeneration(weekness.name);
+                                  }, function () {
+                                    var message = 'Cron job finished for theNextGeneration('+weekness.name+')';
+                                  }, 
+                                  true
+                                );
+                                job.start();
+                                if(cb) cb(message);
+                                console.log(message);
+                            })
+                    });
+    });
+}
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+app.get('/admin', function (req, res) {
+  res.render('admin',
+  { title : 'Admin' }
+  )
+});
+app.post('/theNextGeneration/:weekness', function (req, res) {
+    theNextGeneration(req.params.weekness, function(data) {
+        res.send(data);
+    }); 
+
+});

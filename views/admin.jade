@@ -1,0 +1,28 @@
+doctype 5
+html(lang='en', data-ng-app='')
+  head
+    title= title
+    script(type='text/javascript').
+      function AdminCtrl($scope, $http) {
+        $scope.theNextGeneration = function (weekness) {
+          console.log('Posting to /theNextGeneration/'+weekness);
+          $http({method: 'POST', url: '/theNextGeneration/'+weekness}).
+            success(function(data, status, headers, config) {
+              console.log(data);
+            }).
+            error(function(data, status, headers, config) {
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+            });
+        };
+      };
+
+  body(data-ng-controller='AdminCtrl')
+    h2 theNextGeneration(weekness)
+    input(type='text', data-ng-model='weekness', placeholder='weekness')
+    button(ng-click='theNextGeneration(weekness);')
+      | send
+
+      
+    script(src='/bower_components/angular/angular.min.js')
+    script(src='/bower_components/angular-resource/angular-resource.min.js')

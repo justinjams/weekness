@@ -11,7 +11,8 @@ angular.module('WeeknessApp')
 			'artifactType',
 			'artifact',
 			'generation',
-			'votes'
+			'votes',
+			'duration'
 		];
 	/*
 		title		- text
