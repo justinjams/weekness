@@ -31,6 +31,7 @@ angular.module('WeeknessApp')
 				});
 			},
 			create: function(todo, callback) {
+				console.log(todo);
 				todo = _.pick(todo, $fields);
 				//todo.artifact = JSON.stringify(todo.artifact);
 				var time = new Date().getTime();

@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "dependencies": {
     "grunt-karma": "~0.4.5",
-    "cron": "~1.0.1"
+    "cron": "~1.0.1",
+    "mongoose": "~3.6.20"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

@@ -1,6 +1,32 @@
-<ul>
+<ul ng-controller="SmoopCtrl">
 	<li>
 		<a href="#/faker">Faker</a>
 	</li>
+	<li>
+		<button ng-click="login()">Login</button>
+	</li>
 </ul>
+<script>
+function SmoopCtrl($scope, $http) {
+	var data = {
+				email: 'gweeknesss@gmail.com',
+				password: 'p'
+			};
+	$scope.login = function () { 
+		$http({
+			method: 'POST',
+			url: '/login',
+			data: $.param(data),
+			headers : {'Content-Type':'application/x-www-form-urlencoded'}
+		}).
+  success(function(data, status, headers, config) {
+    console.log(data);
+  }).
+  error(function(data, status, headers, config) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });
+	}
+}
+</script>
 

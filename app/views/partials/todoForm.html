@@ -11,7 +11,6 @@
 			<option value="" disabled selected>Choose upload type</option>
 			<option ng-repeat="type in artifactTypes">{{ type }}</option>
 		</select><br />
-	      <!-- <input class="btn" type="submit" id="submit" value="Submit" ng-click="submit()"/> -->
 	<div ng-switch on="todo.artifactType">
 		<div ng-switch-when="image">
 			<div ng-include src="'views/partials/fileUpload.html'"></div>

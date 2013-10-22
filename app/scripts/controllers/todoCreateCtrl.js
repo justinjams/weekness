@@ -17,7 +17,7 @@ angular.module('WeeknessApp')
 	api.weeknesses.get({name: api.getWeekness()}, function(matches) {
 		var weekness = matches[0];
 		//_.extend($scope.todo, _pick(weekness, ['generation']);
-		$scope.todo.generation = ''+(parseInt(weekness.generation, 10)+1);
+		$scope.todo.generation = parseInt(weekness.generation, 10)+1;
 	});
 	$scope.artifactTypes = ['image', 'none'];
 	$scope.flags = {

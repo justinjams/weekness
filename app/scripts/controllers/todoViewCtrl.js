@@ -10,6 +10,11 @@ angular.module('WeeknessApp')
 		});
 	}
 
+	$scope.back = function() {
+		console.log('hi!');
+		$rootScope.$broadcast('weeknessViewCtrl::show', 'weeknessTodos');
+	}
+
 	$scope.vote = function() {
 		var voteInfo = {
 			todo: $scope.todo.slug,

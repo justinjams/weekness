@@ -11,22 +11,19 @@ angular.module('WeeknessApp')
       limit: baseLimit
     });
     $scope.currentTodo = {};
-    console.log($state.current.name);
-    switch($state.current.name) {
-      case 'weeknessTodo':
-        $scope.showTodo = true;
-        break;
-      case 'weeknessTodos':
-        $scope.showTodos = true;
-        break;
-      case 'weeknessTodoDids':
-        $scope.showDids = true;
-        break;
+    function show(contentType) {
+      $scope.showTodo = 'weeknessTodo' == contentType;
+      $scope.showTodos = 'weeknessTodos' == contentType;
+      $scope.showDids = 'weeknessTodoDids' == contentType;
     }
+    show($state.current.name);
+    $scope.$on('weeknessViewCtrl::show', function(e, contentType) {
+      show(contentType);
+    });
 
-  $scope.$on('todos:created', function(e) {
-    $scope.showTodoForm = false;
-  });
+    $scope.$on('todos:created', function(e) {
+      $scope.showTodoForm = false;
+    });
     api.weeknesses.get({name: $scope.params.weekness}, function(results) {
       $scope.weekness = results[0];
       api.getCurrentTodo($scope.weekness, function(todo) {

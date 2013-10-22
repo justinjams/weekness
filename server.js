@@ -10,8 +10,87 @@ var app = express(),
     q = require('q'),
     bcrypt = require('bcrypt'),
     _ = require('underscore'),
-    cronJob = require('cron').CronJob;
+    cronJob = require('cron').CronJob,
+    mongoose = require('mongoose');
 
+    db.collection('weeknesses').find({}, function(err, stuff){console.log(stuff)});
+
+mongoose.connect('localhost/weekness');
+var mongooseDb = mongoose.connection;
+var Schema = mongoose.Schema;
+
+mongooseDb.on('error', console.error.bind(console, 'connection error:'));
+mongooseDb.once('open', function callback () {
+    var userSchema = new Schema({
+        username: String,
+        name: String,
+        email: String,
+        city: String,
+        state: String,
+        country: String,
+        gender: String,
+        bio: String,
+        created: { type: Date, default: Date.now },
+        updated: { type: Date, default: Date.now },
+        lastLogin: { type: Date, default: Date.now },
+    });
+    var weeknessSchema = new Schema({
+        name: String,
+        title: String,
+        description: String,
+        categoryId: String,
+        artifactType: String,
+        generation: { type: Number, default: 0 },
+        created: { type: Date, default: Date.now },
+        updated: { type: Date, default: Date.now },
+        creator: String
+    });
+    var todoSchema = new Schema({
+        title: String,
+        slug: String,
+        body: String,
+        votes: { type: Number, default: 0 },
+        weekness: [weeknessSchema],
+        artifactType: String,
+        artifact: String,
+        generation: Number,
+        duration: Number,
+        created: { type: Date, default: Date.now },
+        updated: { type: Date, default: Date.now },
+        creator: String
+    });
+    var didSchema = new Schema({
+        title: String,
+        body: String,
+        weekness: [weeknessSchema],
+        todo: [todoSchema],
+        artifact: {
+            content: String,
+            type: {type: String},
+        },
+        created: { type: Date, default: Date.now },
+        updated: { type: Date, default: Date.now },
+        creator: String,
+        meta: {
+            cools: Number,
+            favs: Number
+        }
+    });
+
+    var User = mongoose.model('User', userSchema),
+        Weekness = mongoose.model('Weekness', weeknessSchema),
+        Todo = mongoose.model('Todo', todoSchema),
+        Did = mongoose.model('Did', didSchema);
+
+    User.find(function (err, users) {
+        if (err) {
+            error.log(err);
+            return;
+        }
+    })
+});
+
+console.log('Nessie awakens!');
 /*
   var UserSchema = new Schema({})
       , User;
@@ -200,28 +279,6 @@ everyauth
     return null;
   })
   .registerUser( function (newUserAttrs) {
-    // This step is only executed if we pass the validateRegistration step without
-    // any errors.
-    //
-    // Returns a user (or a Promise that promises a user) after adding it to
-    // some user store.
-    //
-    // As an edge case, sometimes your database may make you aware of violation
-    // of the unique login index, so if this error is sent back in an async
-    // callback, then you can just return that error as a single element array
-    // containing just that error message, and everyauth will automatically handle
-    // that as a failed registration. Again, you will have access to this error via
-    // the `errors` local in your register view jade template.
-    // e.g.,
-    // var promise = this.Promise();
-    // User.create(newUserAttributes, function (err, user) {
-    //   if (err) return promise.fulfill([err]);
-    //   promise.fulfill(user);
-    // });
-    // return promise;
-    //
-    // Note: Index and db-driven validations are the only validations that occur 
-    // here; all other validations occur in the `validateRegistration` step documented above.
     var promise = this.Promise(),
       password = newUserAttrs.password;
 
@@ -341,25 +398,6 @@ app.use(express.bodyParser())
     .use(express.cookieParser())
     .use(express.session({ secret: 'idontknowwhatimdoing' }))
     .use(everyauth.middleware());
-    //.use(express.session({ secret: 'esoognom'}))
-    //.use(mongooseAuth.middleware());
-    //{ secret: 'thissecretrocks', cookie: { maxAge: 60000 }  
-    
-        // IMPORTANT!!!!!!! Do not add app.router, to your middleware chain 
-        // explicitly, or you will run into problems accessing `req.user`
-        // i.e., do not use app.use(app.router). Let express do this for you
-        // automatically for you upon your first app.get or app.post.
-
-    // STEP 3: Add in Dynamic View Helpers (only if you are using express)
-    //mongooseAuth.helpExpress(app);
-/*
-io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log('Socket');
-    console.log(data);
-  });
-});*/
 
 try {
   // use livereload middleware
@@ -422,9 +460,11 @@ app.post('/vote', function(req, res) {
                 params.todo = todo;
                 db.collection('votes').save(params, {}, function(err, votes) {
                     changeVote(todo, 1);
-                    console.log(votes[0].user+' voted for '+todo);
+                    console.log(req.user.email+' voted for '+todo);
                 });
             } else if(votes[0].todo === todo) {
+                console.log(todo);
+                console.log(votes[0].todo);
                 console.log('revote discarded: '+votes[0].user+' voted for '+todo);
             } else {
                 changeVote(votes[0].todo, -1);
@@ -559,6 +599,11 @@ function theNextGeneration(weeknessName, cb){
         update: { $inc: { generation:1 } },
         new: true }, 
         function(err, weekness) {
+            db.collection('generations').save({
+                generation: weekness.generation-1,
+                todo: weekness._id,
+                expired: new Date().getTime()
+            });
             console.log(weekness);
             db.collection('todos').find(
                 { weekness:weekness.name, generation:""+weekness.generation}).sort(
