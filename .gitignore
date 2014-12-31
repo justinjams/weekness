@@ -1,5 +1,8 @@
 node_modules/*
 app/bower_components/*
+.sass-cache
 .sass-cache/*
 dist/*
 test/badSpec/*
+.tmp
+.tmp/*
